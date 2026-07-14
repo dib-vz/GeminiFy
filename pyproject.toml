@@ -1,0 +1,12 @@
+[project]
+name = "geminify"
+version = "0.1.0"
+description = "Sistema inteligente de gestión de listas musicales"
+authors = [
+    { name = "dib-vz" }
+]
+requires-python = ">=3.11"
+
+[tool.geminify]
+database = "database/Lista_Maestra.db"
+excel_version = "V093"
