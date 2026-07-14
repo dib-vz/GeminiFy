@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+.venv/
+venv/
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Configuración del sistema
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Pytest
+.pytest_cache/
+
+# Cobertura
+.coverage
+htmlcov/
