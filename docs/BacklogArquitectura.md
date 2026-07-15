@@ -314,3 +314,45 @@ La reclasificación podría requerir reorganizar la estructura del Glosario.
 ## Próxima revisión
 
 Durante la elaboración de `ModeloDominio.md`.
+
+# BA-008 — Revisión del documento Visión
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Evolución del Modelo de Dominio y aprobación de los ADR-014 y ADR-015.
+
+## Descripción
+
+Durante la definición del Modelo de Dominio se constató una evolución significativa en la comprensión del propósito y alcance de GeminiFy.
+
+El proyecto ha evolucionado desde una solución orientada a la elaboración de listas musicales para entrenamientos de running hacia una plataforma de gestión inteligente del conocimiento musical, donde la Canción constituye el núcleo del dominio y el conocimiento acumulado se utiliza para generar propuestas de listas adaptadas a distintos objetivos.
+
+Se considera necesario revisar el documento `Vision.md` para comprobar que refleja adecuadamente esta evolución conceptual.
+
+## Aspectos a revisar
+
+- Propósito principal de GeminiFy.
+- Alcance funcional del sistema.
+- Definición del problema que resuelve.
+- Relación entre aprendizaje y generación de propuestas.
+- Papel del running como primer caso de uso, sin limitar la evolución futura del sistema.
+- Coherencia con los ADR-014 y ADR-015.
+
+## Beneficios potenciales
+
+- Mantener alineada la documentación estratégica con el Modelo de Dominio.
+- Reflejar con mayor precisión la filosofía del proyecto.
+- Evitar contradicciones entre la visión y las decisiones arquitectónicas.
+- Facilitar la evolución futura de GeminiFy hacia nuevos escenarios de uso.
+
+## Riesgos
+
+Una revisión prematura podría provocar nuevas modificaciones mientras el Modelo de Dominio y la Arquitectura aún están en evolución.
+
+## Próxima revisión
+
+Una vez finalizados `ModeloDominio.md` y `Arquitectura.md`, antes de declarar estable la versión 1.0 de la documentación funcional.
