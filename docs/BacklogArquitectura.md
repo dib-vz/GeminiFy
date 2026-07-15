@@ -133,3 +133,56 @@ El orden, contenido y alcance de estas fases deberán definirse durante el dise�
 ## Próxima revisión
 
 Durante la elaboración de `Arquitectura.md`.
+
+# BA-004 — Clasificación de los procesos de GeminiFy
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Redacción de `Glosario.md` — Sección 3. Procesos.
+
+## Descripción
+
+Durante la definición de los procesos de GeminiFy se identificó una posible clasificación funcional basada en el propósito de cada proceso dentro del sistema.
+
+Esta clasificación podría servir como base para la organización de la Arquitectura y facilitar la comprensión del flujo general de funcionamiento de GeminiFy.
+
+## Hipótesis
+
+Los procesos de GeminiFy podrían agruparse en dos grandes categorías:
+
+### Procesos de Aprendizaje
+
+Procesos cuya finalidad es incorporar, organizar y mantener el conocimiento del Catálogo.
+
+Ejemplos:
+
+- Importación.
+- Consolidación.
+
+### Procesos de Explotación del Conocimiento
+
+Procesos que utilizan el conocimiento acumulado para generar valor al usuario.
+
+Ejemplos:
+
+- Propuesta de Lista.
+- Exportación.
+
+## Beneficios potenciales
+
+- Simplificar la comprensión de la arquitectura.
+- Separar claramente la adquisición de conocimiento de su utilización.
+- Facilitar la evolución del sistema.
+- Mejorar la organización de la documentación y del código.
+
+## Riesgos
+
+La clasificación propuesta podría resultar insuficiente si en futuras versiones aparecen nuevos tipos de procesos.
+
+## Próxima revisión
+
+Durante la elaboración de `Arquitectura.md`.
