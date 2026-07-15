@@ -65,6 +65,7 @@ Los ADR constituyen la referencia oficial sobre la arquitectura del sistema y pr
 - ADR-010 — Arquitectura basada en Acciones
 - ADR-011 — Arquitectura basada en Eventos
 - ADR-012 — Arquitectura basada en Funciones
+- ADR-013 — Clasificación de los Componentes del Sistema
 
 ---
 
@@ -1069,3 +1070,125 @@ Esta decisión afecta a:
 - Estadísticas.
 - Validaciones.
 - Arquitectura general del sistema.
+
+# ADR-013 — Clasificación de los Componentes del Sistema
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy clasificará todos los componentes del sistema en categorías funcionales claramente diferenciadas.
+
+Cada componente pertenecerá a una única categoría principal, que determinará su responsabilidad dentro de la arquitectura.
+
+Esta clasificación constituye la organización oficial del dominio y servirá como referencia para el diseño de la documentación, la base de datos y el código fuente.
+
+## Contexto
+
+Durante la definición de la arquitectura se identificó la necesidad de disponer de una estructura común que permitiera clasificar todos los elementos del sistema de forma coherente.
+
+Esta clasificación facilitará el mantenimiento, la evolución del proyecto y la comprensión de la arquitectura.
+
+## Clasificación
+
+### 1. Entidades del Dominio
+
+Representan los conceptos principales del negocio.
+
+Ejemplos:
+
+- Catálogo
+- Canción
+- Artista
+- Lista
+- Participación
+
+Son la base del modelo de datos y contienen la información persistente del negocio.
+
+---
+
+### 2. Componentes de Organización
+
+Permiten organizar y clasificar las entidades del dominio.
+
+Ejemplos:
+
+- Estado
+- Flag
+- Tag
+
+No representan entidades independientes del negocio, sino mecanismos de clasificación y organización.
+
+---
+
+### 3. Componentes de Comportamiento
+
+Definen el funcionamiento interno del sistema.
+
+Ejemplos:
+
+- Función
+- Regla
+- Acción
+
+Estos componentes implementan la lógica de negocio y coordinan el comportamiento de GeminiFy.
+
+---
+
+### 4. Componentes de Registro
+
+Representan los hechos ocurridos durante la ejecución del sistema.
+
+Ejemplos:
+
+- Evento
+- Auditoría
+
+Su finalidad es garantizar la trazabilidad completa de todas las operaciones.
+
+---
+
+### 5. Componentes de Configuración
+
+Permiten adaptar el comportamiento de GeminiFy sin modificar el código.
+
+Ejemplos:
+
+- Parámetros
+- Preferencias
+- Catálogos auxiliares
+- Configuración del sistema
+
+## Motivación
+
+Los principales objetivos de esta decisión son:
+
+- Establecer una arquitectura uniforme.
+- Separar claramente las responsabilidades de cada componente.
+- Facilitar la comprensión del sistema.
+- Simplificar la evolución futura de GeminiFy.
+- Servir como guía para el diseño de la documentación, el modelo de datos y el código.
+
+## Consecuencias
+
+Toda nueva funcionalidad deberá clasificarse dentro de una de las categorías definidas en este ADR.
+
+Si un nuevo componente no pudiera clasificarse, será necesario revisar la arquitectura antes de incorporarlo al sistema.
+
+Esta clasificación será utilizada como referencia para organizar:
+
+- la documentación;
+- el modelo de datos;
+- la estructura del código;
+- las pruebas;
+- la auditoría.
+
+## Impacto
+
+Esta decisión afecta a toda la arquitectura de GeminiFy y constituye el modelo de organización oficial del proyecto.
