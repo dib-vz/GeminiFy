@@ -82,3 +82,53 @@ Las definiciones incluidas en este documento constituyen la referencia oficial d
 - Base de Datos
 - Motor de Reglas
 - Motor de Estadísticas
+
+# 1. Conceptos Fundamentales
+
+## Catálogo
+
+Conjunto de todas las Canciones gestionadas por GeminiFy.
+
+El Catálogo constituye el universo musical del sistema y representa la colección completa de canciones conocidas por la aplicación, independientemente de su estado, número de participaciones o clasificación.
+
+Una Canción pertenece siempre a un único Catálogo.
+
+---
+
+## Canción
+
+Entidad principal del modelo de negocio que representa una obra musical única dentro del Catálogo.
+
+Una Canción posee identidad propia y permanente durante todo su ciclo de vida.
+
+Una Canción puede existir aunque nunca haya participado en ninguna Lista.
+
+---
+
+## Artista
+
+Persona, grupo musical o formación artística responsable de la interpretación principal de una Canción.
+
+Un Artista puede estar asociado a una o varias Canciones.
+
+---
+
+## Lista
+
+Conjunto ordenado de Canciones proporcionado como entrada al sistema para su proceso de consolidación.
+
+Una Lista representa una fotografía del catálogo musical en un instante determinado y constituye el origen de las futuras Participaciones.
+
+Por sí misma, una Lista no modifica el estado del sistema.
+
+---
+
+## Participación
+
+Registro histórico generado por GeminiFy como resultado del proceso de consolidación de una Lista.
+
+Una Participación representa la presencia de una Canción en una Lista concreta y almacena toda la información correspondiente a esa aparición, incluyendo la Puntuación obtenida y cualquier otro dato asociado a dicha participación.
+
+Una Canción puede tener cero, una o muchas Participaciones.
+
+
