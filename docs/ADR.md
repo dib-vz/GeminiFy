@@ -261,3 +261,104 @@ Esta decisión afecta a:
 - Auditoría.
 - Motor de reglas.
 - Motor de estadísticas.
+
+# ADR-003 — Modelo de Canción
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy establece la entidad **Canción** como el núcleo principal del modelo de negocio.
+
+Una Canción representa una obra musical única dentro del catálogo del sistema y existe independientemente de sus participaciones.
+
+La identidad de una Canción nunca dependerá de los resultados obtenidos, de su estado, de sus flags o de cualquier otro atributo derivado.
+
+## Contexto
+
+El modelo basado en Excel asociaba gran parte de la información de una canción a las filas de distintas hojas.
+
+Durante el rediseño de GeminiFy se decidió separar completamente la identidad de una Canción de cualquier información histórica o calculada.
+
+## Motivación
+
+Los principales objetivos de esta decisión son:
+
+- Normalizar el modelo de datos.
+- Evitar duplicidades.
+- Mantener una única representación de cada canción.
+- Facilitar la reutilización de información.
+- Separar datos permanentes de datos históricos.
+
+## Definición
+
+Una Canción representa una obra musical única dentro del catálogo de GeminiFy.
+
+Una Canción puede existir aunque nunca haya participado en ninguna Lista.
+
+Las Participaciones representan hechos históricos asociados a una Canción, pero nunca forman parte de su identidad.
+
+## Atributos permanentes
+
+Entre otros, una Canción podrá disponer de los siguientes atributos:
+
+- Identificador GEM.
+- Título.
+- Artista.
+- Duración.
+- BPM.
+- Género.
+- Subgénero.
+- Álbum.
+- Año.
+- Idioma.
+- Fecha de alta.
+- Estado del ciclo de vida.
+
+La lista de atributos podrá ampliarse en futuras versiones sin alterar la identidad de la entidad.
+
+## Atributos derivados
+
+Los siguientes valores no forman parte de la información permanente de una Canción:
+
+- Nota media.
+- Número de participaciones.
+- Mejor nota.
+- Peor nota.
+- Ranking.
+- Tendencia.
+- Índices estadísticos.
+
+Estos valores serán calculados automáticamente por GeminiFy.
+
+## Relaciones
+
+Una Canción:
+
+- pertenece al Catálogo;
+- puede tener cero o muchas Participaciones;
+- posee un único Estado;
+- puede tener cero, uno o muchos Flags;
+- puede tener cero, uno o muchos Tags.
+
+## Alternativas consideradas
+
+### Mantener el modelo heredado del Excel
+
+Descartada por mezclar información permanente con información histórica.
+
+## Consecuencias
+
+Esta decisión convierte la entidad Canción en el eje central del modelo de negocio de GeminiFy.
+
+Toda la información histórica, estadística o derivada se almacenará o calculará mediante entidades específicas.
+
+## Impacto
+
+Esta decisión afecta al modelo de datos completo y condiciona el diseño de todas las entidades relacionadas.
