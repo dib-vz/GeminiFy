@@ -362,3 +362,105 @@ Toda la información histórica, estadística o derivada se almacenará o calcul
 ## Impacto
 
 Esta decisión afecta al modelo de datos completo y condiciona el diseño de todas las entidades relacionadas.
+
+# ADR-004 — Regla de Oro del Modelo de Datos
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy no almacenará ningún atributo cuyo valor pueda obtenerse de forma determinista a partir de otros datos persistidos.
+
+Únicamente se almacenarán los datos originales del negocio y aquellos necesarios para garantizar la integridad, la trazabilidad y el rendimiento del sistema.
+
+## Contexto
+
+En el modelo original basado en Excel existían numerosos valores calculados que se almacenaban junto con la información principal.
+
+Este enfoque incrementa el riesgo de inconsistencias, dificulta el mantenimiento y obliga a sincronizar continuamente datos derivados.
+
+Durante el diseño de GeminiFy se decide separar claramente los datos persistentes de los datos calculados.
+
+## Motivación
+
+Los principales objetivos de esta decisión son:
+
+- Evitar la duplicidad de información.
+- Garantizar la consistencia del modelo de datos.
+- Reducir el riesgo de errores por desincronización.
+- Simplificar la evolución del sistema.
+- Facilitar la auditoría y la reconstrucción completa de la información.
+
+## Definición
+
+Se consideran **datos persistentes** aquellos que representan hechos del negocio y que no pueden reconstruirse automáticamente.
+
+Se consideran **datos derivados** aquellos cuyo valor puede calcularse de forma determinista a partir de los datos persistentes.
+
+GeminiFy almacenará únicamente los datos persistentes.
+
+Los datos derivados serán calculados cuando sean necesarios o durante procesos específicos de actualización.
+
+## Ejemplos
+
+### Datos persistentes
+
+- Canción.
+- Artista.
+- Participación.
+- Lista.
+- Fecha.
+- Nota.
+- Duración.
+- BPM.
+- Flags.
+- Tags.
+- Estado.
+
+### Datos derivados
+
+- Nota media.
+- Número de participaciones.
+- Ranking.
+- Tendencia.
+- Mejor nota.
+- Peor nota.
+- Tiempo en cada estado.
+- Índices estadísticos.
+- Posiciones históricas.
+
+## Excepciones
+
+Cuando el rendimiento del sistema lo requiera, GeminiFy podrá mantener información precalculada.
+
+Estos datos deberán poder regenerarse completamente a partir de la información persistente y nunca constituirán la fuente oficial de información.
+
+## Alternativas consideradas
+
+### Almacenar todos los valores calculados
+
+Descartada por incrementar la complejidad del sistema y aumentar el riesgo de inconsistencias.
+
+## Consecuencias
+
+La arquitectura de GeminiFy distinguirá claramente entre información persistente e información derivada.
+
+Todo cálculo deberá poder reconstruirse utilizando únicamente los datos almacenados.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Modelo de datos.
+- Motor de estadísticas.
+- Motor de reglas.
+- Exportación.
+- Auditoría.
+- Rendimiento.
+- Diseño de consultas.
