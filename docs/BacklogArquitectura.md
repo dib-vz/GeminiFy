@@ -98,3 +98,46 @@ La modificación afectará a:
 ## Próxima revisión
 
 Durante la elaboración de `ModeloDominio.md`.
+
+# BA-003 — Definición del flujo del proceso de Consolidación
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Redacción de `Glosario.md` — Sección 3. Procesos.
+
+## Descripción
+
+Durante la definición del proceso de Consolidación se identificó la necesidad de documentar detalladamente las fases que lo componen.
+
+Aunque el Glosario únicamente define el concepto de Consolidación, será necesario diseñar posteriormente el flujo completo del proceso dentro de la Arquitectura del sistema.
+
+## Hipótesis
+
+Una Consolidación podría estar compuesta, entre otras, por las siguientes fases:
+
+1. Validación de la Lista.
+2. Identificación de Canciones existentes.
+3. Registro de nuevas Canciones.
+4. Generación de Participaciones.
+5. Recalculo de estadísticas.
+6. Aplicación de Reglas de Negocio.
+7. Actualización de Estados y Flags.
+8. Registro de Auditoría.
+9. Generación del informe de Consolidación.
+
+El orden, contenido y alcance de estas fases deberán definirse durante el diseño de la Arquitectura.
+
+## Beneficios potenciales
+
+- Estandarizar el principal proceso de negocio de GeminiFy.
+- Facilitar la implementación del sistema.
+- Garantizar la trazabilidad de todas las operaciones.
+- Permitir la incorporación de nuevas fases en futuras versiones.
+
+## Próxima revisión
+
+Durante la elaboración de `Arquitectura.md`.
