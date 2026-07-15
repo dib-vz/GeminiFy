@@ -1,42 +1,109 @@
-ConsolidarLista
+# GeminiFy
 
-Consolidación
+# Modelo de Dominio
 
-Lista L0034
+Versión: 1.0
+Estado: Activo
+Última actualización: DD/MM/AAAA
 
-↓
+---
 
-Acción
+# Introducción
 
-ConsolidarLista
+## Objetivo del documento
 
-↓
+## Alcance
 
-Se genera
+## Referencias
 
-Consolidación #152
+- Glosario
+- ADR
+- Reglas de Negocio
+- Arquitectura
 
-↓
+---
 
-Resultado
+# Índice
 
-+23 Participaciones
-+4 Canciones nuevas
-2 Estados modificados
-5 Estadísticas recalculadas
+## 1. Principios del Modelo
 
-Esto abre una posibilidad muy interesante
-Creo que Consolidación debería convertirse en una Entidad del Dominio, no en un simple concepto del glosario.
-¿Por qué?
-Porque una consolidación tiene identidad propia:
-Fecha y hora.
-Lista de origen.
-Usuario que la ejecutó.
-Duración.
-Número de canciones procesadas.
-Número de participaciones creadas.
-Cambios de estado.
-Flags modificados.
-Resultado final.
-Posibilidad de revertirla.
-En otras palabras, una Consolidación deja de ser "algo que ocurre" y pasa a ser un objeto del negocio con trazabilidad completa.
+### 1.1 Principios generales
+### 1.2 La Canción como entidad central (ADR-014)
+### 1.3 Organización del modelo (ADR-015)
+
+---
+
+## 2. Entidad Central
+
+### 2.1 Canción
+
+- Descripción
+- Responsabilidad
+- Identidad
+- Relaciones
+- Atributos
+- Restricciones
+- Información derivada
+
+---
+
+## 3. Información Asociada
+
+### 3.1 Artista
+
+- Descripción
+- Responsabilidad
+- Identidad
+- Relaciones
+- Atributos
+- Restricciones
+
+### 3.2 Lista
+
+- Descripción
+- Responsabilidad
+- Identidad
+- Relaciones
+- Atributos
+- Restricciones
+
+### 3.3 Participación
+
+- Descripción
+- Responsabilidad
+- Identidad
+- Relaciones
+- Atributos
+- Restricciones
+
+---
+
+## 4. Clasificación
+
+### 4.1 Estado
+
+### 4.2 Flag
+
+### 4.3 Tag
+
+---
+
+## 5. Información Estadística
+
+### 5.1 Puntuación
+
+### 5.2 Nota Media
+
+### 5.3 Indicadores
+
+---
+
+## 6. Relaciones del Modelo
+
+---
+
+## 7. Restricciones del Modelo
+
+---
+
+## 8. Información Derivada
