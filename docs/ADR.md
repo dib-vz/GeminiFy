@@ -66,6 +66,7 @@ Los ADR constituyen la referencia oficial sobre la arquitectura del sistema y pr
 - ADR-011 — Arquitectura basada en Eventos
 - ADR-012 — Arquitectura basada en Funciones
 - ADR-013 — Clasificación de los Componentes del Sistema
+- ADR-014 — La Canción como entidad central del modelo de dominio
 
 ---
 
@@ -1192,3 +1193,45 @@ Esta clasificación será utilizada como referencia para organizar:
 ## Impacto
 
 Esta decisión afecta a toda la arquitectura de GeminiFy y constituye el modelo de organización oficial del proyecto.
+
+# ADR-014 — La Canción como entidad central del modelo de dominio
+
+## Estado
+
+Aprobado.
+
+## Fecha
+
+16/07/2026
+
+## Contexto
+
+Durante el diseño del Modelo de Dominio se analizó la naturaleza de las principales entidades de GeminiFy.
+
+Se concluyó que el objetivo del sistema no es gestionar listas de reproducción, sino construir y mantener el conocimiento asociado a las Canciones para generar propuestas musicales fundamentadas.
+
+Las Listas, Participaciones, Estados, Flags, Tags, Estadísticas y demás elementos del dominio existen únicamente en relación con una Canción.
+
+## Decisión
+
+Se establece que la **Canción constituye la entidad central del modelo de dominio de GeminiFy**.
+
+El resto de entidades, procesos y componentes deberán diseñarse tomando la Canción como núcleo del sistema.
+
+Las Listas representan agrupaciones de Canciones.
+
+Las Participaciones representan hechos históricos asociados a una Canción dentro de una Lista.
+
+Los Estados, Flags, Tags y Estadísticas describen o caracterizan una Canción, pero no forman parte de su identidad.
+
+## Consecuencias
+
+- El Modelo de Dominio se diseñará con la Canción como entidad principal.
+- Las relaciones entre entidades se definirán tomando la Canción como eje del modelo.
+- Los procesos de Consolidación y Propuesta de Lista operarán principalmente sobre las Canciones del Catálogo.
+- La Base de Datos, la API y la interfaz de usuario deberán respetar este principio de diseño.
+- Las futuras ampliaciones del sistema deberán preservar la centralidad de la Canción dentro del dominio.
+
+## Justificación
+
+Este enfoque representa con mayor fidelidad el propósito de GeminiFy: construir un catálogo musical vivo cuyo conocimiento evoluciona a partir de las Participaciones registradas y sirve como base para la generación de nuevas propuestas de listas.
