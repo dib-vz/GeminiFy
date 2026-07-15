@@ -219,7 +219,51 @@ Proceso mediante el cual GeminiFy genera información del Catálogo para su util
 
 La Exportación puede realizarse en diferentes formatos, respetando siempre la estructura y consistencia de la información generada.
 
+# 4. Automatización
 
+Los conceptos de automatización definen el comportamiento de GeminiFy y permiten que el sistema responda de forma inteligente ante los distintos eventos que se producen durante su funcionamiento.
+
+La automatización se basa en la aplicación de Reglas de Negocio que desencadenan Acciones mediante la ejecución de Funciones específicas.
+
+---
+
+## Evento
+
+Suceso producido dentro o fuera de GeminiFy que puede desencadenar uno o varios procesos automáticos.
+
+Un Evento representa el punto de inicio de la automatización y puede ser originado por una acción del usuario, por otro proceso del sistema o por una fuente externa.
+
+---
+
+## Regla
+
+Condición lógica que determina el comportamiento de GeminiFy ante uno o varios Eventos.
+
+Una Regla evalúa una situación concreta y establece qué Acciones deben ejecutarse cuando se cumplen las condiciones definidas.
+
+---
+
+## Acción
+
+Operación ejecutada por GeminiFy como consecuencia de la aplicación de una Regla.
+
+Una Acción representa un cambio, actualización o actuación concreta realizada por el sistema sobre el modelo de dominio.
+
+---
+
+## Función
+
+Componente reutilizable que implementa una operación específica dentro de GeminiFy.
+
+Las Funciones constituyen los bloques básicos de ejecución utilizados por las Acciones y pueden ser invocadas desde distintos procesos del sistema.
+
+---
+
+## Auditoría
+
+Mecanismo mediante el cual GeminiFy registra y conserva la trazabilidad de las operaciones realizadas por el sistema.
+
+La Auditoría permite conocer qué ocurrió, cuándo ocurrió, cómo ocurrió y cuál fue su resultado.
 
 
 
