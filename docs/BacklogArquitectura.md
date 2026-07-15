@@ -55,3 +55,46 @@ Todos ellos podrían compartir canciones procedentes de una única Biblioteca Mu
 ## Próxima revisión
 
 Durante el diseño de ModeloDominio.md.
+
+# BA-002 — Sustitución del concepto "Último Combate"
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Auditoría del archivo Excel origen.
+
+## Descripción
+
+Durante la revisión del modelo heredado se identificó el atributo **Último Combate**, cuyo nombre deja de ser coherente tras la sustitución del concepto *Batalla* por *Participación*.
+
+Se propone revisar este concepto y adoptar una terminología alineada con el lenguaje oficial de GeminiFy.
+
+## Propuesta
+
+Sustituir el atributo **Último Combate** por **Última Participación**.
+
+La nueva denominación representa de forma precisa la última aparición registrada de una Canción dentro de una Lista consolidada.
+
+## Motivación
+
+- Mantener la coherencia terminológica del proyecto.
+- Eliminar referencias heredadas del modelo Excel.
+- Alinear el lenguaje con los ADR aprobados.
+- Facilitar la comprensión del modelo de dominio.
+
+## Impacto potencial
+
+La modificación afectará a:
+
+- Modelo de Dominio.
+- Reglas de Negocio.
+- Migración desde Excel.
+- Exportación de datos.
+- Interfaz de usuario.
+
+## Próxima revisión
+
+Durante la elaboración de `ModeloDominio.md`.
