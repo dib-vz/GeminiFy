@@ -186,3 +186,45 @@ La clasificación propuesta podría resultar insuficiente si en futuras versione
 ## Próxima revisión
 
 Durante la elaboración de `Arquitectura.md`.
+
+# BA-005 — Incorporación del concepto "Indicador"
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Redacción de `Glosario.md` — Sección 5. Estadísticas.
+
+## Descripción
+
+Durante la definición de los conceptos estadísticos se identificó la posible necesidad de incorporar el concepto **Indicador** como elemento diferenciador entre los datos registrados y la información calculada por GeminiFy.
+
+## Hipótesis
+
+Un Indicador representaría una medida calculada a partir de uno o varios datos del sistema con el objetivo de facilitar el análisis y la toma de decisiones.
+
+Bajo esta clasificación podrían considerarse Indicadores, entre otros:
+
+- Nota Media.
+- Ranking.
+- Tendencia.
+- Otros indicadores que puedan incorporarse en futuras versiones.
+
+La Puntuación, al representar un valor registrado en una Participación, no tendría la consideración de Indicador.
+
+## Beneficios potenciales
+
+- Mejorar la precisión del lenguaje del dominio.
+- Diferenciar claramente entre datos e información calculada.
+- Facilitar la evolución del modelo estadístico.
+- Proporcionar una base conceptual para futuros análisis avanzados.
+
+## Riesgos
+
+La incorporación de este concepto podría requerir una reorganización de la sección de Estadísticas del Glosario y del Modelo de Dominio.
+
+## Próxima revisión
+
+Durante la elaboración de `ModeloDominio.md`.
