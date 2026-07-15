@@ -311,4 +311,32 @@ Conjunto de Participaciones, Estados y demás información registrada que descri
 
 El Historial constituye la memoria funcional de GeminiFy sobre cada Canción.
 
+# 6. Sistema
 
+Los conceptos del sistema representan los componentes responsables de gestionar el funcionamiento interno de GeminiFy.
+
+Estos componentes proporcionan los servicios necesarios para ejecutar los procesos, aplicar las reglas de negocio y mantener la integridad de la información gestionada.
+
+---
+
+## Base de Datos
+
+Componente encargado de almacenar y gestionar de forma persistente toda la información utilizada por GeminiFy.
+
+La Base de Datos constituye el repositorio permanente del conocimiento generado por el sistema.
+
+---
+
+## Motor de Reglas
+
+Componente responsable de interpretar, evaluar y ejecutar las Reglas de Negocio definidas en GeminiFy.
+
+El Motor de Reglas garantiza la aplicación automática y consistente del comportamiento funcional del sistema.
+
+---
+
+## Motor de Estadísticas
+
+Componente responsable de calcular, actualizar y mantener los indicadores estadísticos del Catálogo.
+
+El Motor de Estadísticas transforma la información histórica en conocimiento útil para el análisis y la generación de propuestas.
