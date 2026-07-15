@@ -4,7 +4,7 @@
 
 Versión: 1.0
 Estado: Activo
-Última actualización: DD/MM/AAAA
+Última actualización: 16/07/2026
 
 ---
 
