@@ -181,7 +181,43 @@ Una Canción puede estar asociada a ninguno, uno o varios Tags de forma simultá
 
 Los Tags tienen una finalidad organizativa y no afectan al comportamiento funcional de la Canción.
 
+# 3. Procesos
 
+Los procesos representan el conjunto de operaciones mediante las cuales GeminiFy incorpora, transforma, actualiza o utiliza el conocimiento almacenado en el Catálogo.
+
+Cada proceso persigue un objetivo específico y puede implicar la creación, modificación, análisis o explotación de la información gestionada por el sistema.
+
+---
+
+## Propuesta de Lista
+
+Proceso mediante el cual GeminiFy analiza el Catálogo y genera una propuesta de Lista adaptada a los criterios, objetivos y restricciones definidos por el usuario.
+
+La propuesta se construye aplicando el conocimiento acumulado del sistema, las Reglas de Negocio, las estadísticas disponibles y las preferencias configuradas, con el objetivo de ofrecer una selección musical coherente con el propósito solicitado.
+
+---
+
+## Consolidación
+
+Proceso mediante el cual GeminiFy incorpora al Catálogo la información procedente de una Lista.
+
+Como resultado de una Consolidación, el sistema genera las Participaciones correspondientes, actualiza el conocimiento asociado a las Canciones y ejecuta las Reglas de Negocio que sean aplicables.
+
+---
+
+## Importación
+
+Proceso mediante el cual GeminiFy incorpora información procedente de fuentes externas.
+
+La Importación permite integrar datos en el sistema garantizando su compatibilidad con el modelo de dominio y preservando la integridad del Catálogo.
+
+---
+
+## Exportación
+
+Proceso mediante el cual GeminiFy genera información del Catálogo para su utilización por sistemas externos o por el propio usuario.
+
+La Exportación puede realizarse en diferentes formatos, respetando siempre la estructura y consistencia de la información generada.
 
 
 
