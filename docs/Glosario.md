@@ -145,4 +145,46 @@ Registro histórico generado por GeminiFy como resultado de la Consolidación de
 
 Cada Participación representa la presencia de una Canción en una Lista concreta y constituye la unidad básica del historial musical del sistema.
 
+# 2. Organización
+
+Los conceptos de organización permiten clasificar, identificar y gestionar las Canciones dentro del Catálogo.
+
+Estos conceptos no modifican la identidad de una Canción, sino que facilitan su organización, seguimiento y administración durante su ciclo de vida.
+
+---
+
+## Estado
+
+Condición que refleja la situación funcional de una Canción dentro del Catálogo en un momento determinado.
+
+Toda Canción debe encontrarse en un único Estado, el cual determina su posición dentro de su ciclo de vida.
+
+Los Estados son mutuamente excluyentes.
+
+---
+
+## Flag
+
+Marca o indicador utilizado para identificar características, condiciones o situaciones específicas de una Canción.
+
+Una Canción puede tener ninguna, una o varias Flags simultáneamente.
+
+Las Flags son independientes del Estado y pueden asignarse o retirarse sin modificar el ciclo de vida de la Canción.
+
+---
+
+## Tag
+
+Etiqueta utilizada para clasificar y agrupar Canciones según criterios definidos por el usuario o por el sistema.
+
+Una Canción puede estar asociada a ninguno, uno o varios Tags de forma simultánea.
+
+Los Tags tienen una finalidad organizativa y no afectan al comportamiento funcional de la Canción.
+
+
+
+
+
+
+
 
