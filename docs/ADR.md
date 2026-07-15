@@ -464,3 +464,608 @@ Esta decisión afecta a:
 - Auditoría.
 - Rendimiento.
 - Diseño de consultas.
+
+# ADR-005 — Identificador Universal de Entidades
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+Todas las entidades persistentes de GeminiFy dispondrán de un identificador único con formato:
+
+GEM-XXXXXX
+
+Ejemplos:
+
+- GEM-000001
+- GEM-000002
+- GEM-000003
+
+Este identificador constituirá la identidad oficial de la entidad durante todo su ciclo de vida.
+
+## Contexto
+
+Durante el diseño del modelo de datos se evaluaron diferentes alternativas para identificar las entidades del sistema.
+
+Se descartó utilizar identificadores dependientes de la tecnología (por ejemplo, claves enteras autoincrementales) como referencia funcional, ya que dificultan la auditoría, las migraciones y la interoperabilidad entre componentes.
+
+## Motivación
+
+Los principales objetivos son:
+
+- Disponer de un identificador único, estable y permanente.
+- Independizar la identidad de la implementación técnica.
+- Facilitar la trazabilidad completa del sistema.
+- Simplificar auditorías e importaciones.
+- Evitar referencias basadas en posiciones físicas dentro de la base de datos.
+
+## Definición
+
+El identificador GEM:
+
+- será único en todo el sistema;
+- nunca cambiará;
+- nunca será reutilizado;
+- no contendrá información de negocio;
+- será generado automáticamente por GeminiFy.
+
+Los usuarios no podrán modificarlo.
+
+## Alcance
+
+El identificador GEM podrá utilizarse en cualquier entidad persistente del sistema.
+
+Entre ellas:
+
+- Canción.
+- Artista.
+- Lista.
+- Participación.
+- Tag.
+- Flag.
+- Regla.
+- Acción.
+- Evento.
+
+## Alternativas consideradas
+
+### Identificadores numéricos autoincrementales
+
+Descartada por depender de la implementación física de la base de datos.
+
+### Identificadores con prefijos por entidad
+
+Ejemplos:
+
+- SON-000001
+- PAR-000001
+- ART-000001
+
+Descartada por aumentar la complejidad sin aportar ventajas funcionales relevantes.
+
+## Consecuencias
+
+Todo el sistema utilizará el identificador GEM como referencia oficial entre entidades.
+
+Los identificadores internos de SQLite podrán existir por motivos técnicos, pero nunca formarán parte del modelo funcional ni serán visibles para el usuario.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Modelo de datos.
+- Relaciones entre entidades.
+- Auditoría.
+- Exportaciones.
+- API.
+- Interfaces de usuario.
+
+# ADR-006 — Sistema de Flags
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy adopta un sistema de Flags como mecanismo estándar para modificar el comportamiento de las entidades sin alterar su identidad ni su ciclo de vida.
+
+Los Flags constituyen marcas funcionales independientes del Estado de una entidad y podrán ser asignados o eliminados tanto por acciones del usuario como por reglas del sistema.
+
+## Contexto
+
+Inicialmente se planteó incorporar atributos específicos como VIP o VETO dentro de la entidad Canción.
+
+Durante el diseño del modelo de negocio se concluyó que esta solución dificultaría la evolución del sistema, ya que cada nuevo comportamiento obligaría a modificar la estructura del modelo de datos.
+
+## Motivación
+
+Los objetivos principales son:
+
+- Permitir la incorporación de nuevos comportamientos sin modificar la arquitectura.
+- Separar el comportamiento de la identidad de las entidades.
+- Facilitar la automatización mediante reglas.
+- Permitir la intervención manual del usuario.
+- Mejorar la escalabilidad del sistema.
+
+## Definición
+
+Un Flag representa una característica funcional que modifica el comportamiento de una entidad.
+
+Un Flag:
+
+- puede existir o no sobre una entidad;
+- puede ser añadido o eliminado;
+- puede ser gestionado por reglas o por el usuario;
+- no modifica la identidad de la entidad;
+- no modifica el Estado de la entidad.
+
+Una entidad podrá tener simultáneamente cero, uno o múltiples Flags.
+
+## Ejemplos
+
+- VIP
+- VETO
+- FAVORITA
+- DESCUBRIMIENTO
+- PENDIENTE
+- CLÁSICO
+
+La lista de Flags podrá ampliarse sin modificar el modelo de datos.
+
+## Alternativas consideradas
+
+### Atributos específicos (VIP, VETO...)
+
+Descartada por limitar la extensibilidad del sistema.
+
+## Consecuencias
+
+Los Flags pasan a formar parte del modelo funcional de GeminiFy.
+
+Toda modificación de un Flag deberá realizarse mediante una Acción y quedará registrada en la Auditoría.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Modelo de datos.
+- Motor de reglas.
+- Auditoría.
+- Acciones.
+- Interfaz de usuario.
+
+# ADR-007 — Sistema de Tags
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy adopta un sistema de Tags para clasificar las entidades sin modificar su comportamiento funcional.
+
+Los Tags constituyen un mecanismo de organización y búsqueda completamente independiente del sistema de Flags.
+
+## Contexto
+
+Durante el diseño del modelo de negocio se identificó la necesidad de diferenciar claramente entre las características que afectan al funcionamiento del sistema y aquellas cuyo único objetivo es clasificar o agrupar información.
+
+## Motivación
+
+Los objetivos principales son:
+
+- Organizar el catálogo.
+- Facilitar búsquedas y filtros.
+- Agrupar entidades según criterios definidos por el usuario.
+- Evitar utilizar Flags con fines exclusivamente organizativos.
+
+## Definición
+
+Un Tag representa una etiqueta descriptiva.
+
+Los Tags:
+
+- no modifican el comportamiento del sistema;
+- no modifican el Estado;
+- pueden ser creados por el usuario;
+- pueden asignarse a múltiples entidades;
+- una entidad puede disponer de cero, uno o muchos Tags.
+
+## Ejemplos
+
+- Running
+- Rock Alternativo
+- Energía Alta
+- Favoritas 2026
+- Verano
+- Top 100
+
+## Alternativas consideradas
+
+### Utilizar únicamente Flags
+
+Descartada por mezclar clasificación con comportamiento.
+
+## Consecuencias
+
+GeminiFy mantiene separados los conceptos de comportamiento (Flags) y clasificación (Tags).
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Modelo de datos.
+- Motor de búsqueda.
+- Filtros.
+- Interfaz de usuario.
+
+# ADR-008 — Ciclo de Vida de una Canción
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+Toda Canción perteneciente al Catálogo deberá encontrarse exactamente en un único Estado de su ciclo de vida.
+
+Los Estados son mutuamente excluyentes y representan la situación funcional actual de la Canción dentro de GeminiFy.
+
+## Contexto
+
+El modelo heredado de Excel utilizaba distintas hojas (Cuartel, Legiones y Cementerio) para representar situaciones funcionales de las canciones.
+
+Durante el diseño de GeminiFy se decidió sustituir este enfoque por un modelo basado en un único Estado asociado a cada Canción.
+
+## Estados definidos
+
+### INICIAL
+
+Canción incorporada al catálogo que todavía no dispone de Participaciones.
+
+### ACTIVA
+
+Canción con una o más Participaciones y disponible para continuar participando.
+
+### OBSERVACIÓN
+
+Canción sometida a seguimiento especial por decisión del usuario o como consecuencia de las reglas del sistema.
+
+### INACTIVA
+
+Canción retirada del catálogo activo.
+
+Podrá ser recuperada mediante las Acciones autorizadas por GeminiFy.
+
+## Reglas de compatibilidad
+
+- Una Canción solo puede tener un Estado.
+- Una Canción sin Participaciones nunca podrá encontrarse en estado ACTIVA u OBSERVACIÓN.
+- Una Canción con Participaciones no podrá permanecer en estado INICIAL.
+- Las transiciones de Estado deberán respetar las reglas de negocio definidas por GeminiFy.
+- Toda transición quedará registrada en la Auditoría.
+
+## Motivación
+
+Los principales objetivos son:
+
+- Simplificar el modelo funcional.
+- Eliminar la dependencia de la estructura del Excel.
+- Representar correctamente el ciclo de vida de una Canción.
+- Facilitar la aplicación automática de reglas.
+
+## Alternativas consideradas
+
+### Mantener las hojas del Excel como entidades independientes
+
+Descartada por duplicar información y dificultar la evolución del sistema.
+
+## Consecuencias
+
+GeminiFy utilizará un único Estado para representar el ciclo de vida de cada Canción.
+
+Las antiguas hojas del Excel pasarán a considerarse representaciones derivadas del Estado.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Modelo de datos.
+- Motor de reglas.
+- Auditoría.
+- Estadísticas.
+- Exportación.
+- Interfaz de usuario.
+
+# ADR-009 — Modelo Conceptual del Dominio
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy adopta un modelo de dominio centrado en la entidad Canción, sobre la que se estructuran el resto de entidades y relaciones del sistema.
+
+El modelo conceptual será independiente de cualquier implementación técnica y representará exclusivamente los conceptos del negocio.
+
+## Contexto
+
+El modelo heredado del Excel estaba condicionado por la organización física de las hojas de cálculo.
+
+Durante el rediseño de GeminiFy se decidió construir un modelo basado en conceptos del negocio en lugar de estructuras de almacenamiento.
+
+## Modelo conceptual
+
+El núcleo del sistema estará formado por las siguientes entidades:
+
+- Catálogo
+- Canción
+- Artista
+- Lista
+- Participación
+- Estado
+- Flag
+- Tag
+
+Estas entidades podrán complementarse con otras en futuras versiones sin alterar la estructura fundamental del modelo.
+
+## Relaciones
+
+- Un Catálogo contiene muchas Canciones.
+- Una Canción pertenece a un único Catálogo.
+- Una Canción pertenece a un único Artista.
+- Una Canción puede tener cero o muchas Participaciones.
+- Una Lista contiene una o muchas Participaciones.
+- Una Canción posee un único Estado.
+- Una Canción puede disponer de múltiples Flags.
+- Una Canción puede disponer de múltiples Tags.
+
+## Motivación
+
+Los principales objetivos son:
+
+- Modelar el negocio y no la tecnología.
+- Eliminar dependencias del Excel.
+- Facilitar la evolución del sistema.
+- Simplificar el mantenimiento.
+- Mejorar la comprensión del dominio.
+
+## Consecuencias
+
+Toda la arquitectura de GeminiFy se desarrollará sobre este modelo conceptual.
+
+Las estructuras técnicas (SQLite, API, interfaces, etc.) serán una implementación de este modelo y nunca al contrario.
+
+## Impacto
+
+Esta decisión afecta a toda la arquitectura del sistema.
+
+# ADR-010 — Arquitectura basada en Acciones
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+Toda modificación del sistema deberá realizarse exclusivamente mediante una Acción.
+
+Ningún componente podrá modificar directamente la información persistente.
+
+## Contexto
+
+GeminiFy incorpora distintos componentes capaces de solicitar cambios sobre el sistema:
+
+- Usuario.
+- Motor de reglas.
+- Procesos de importación.
+- API.
+- Automatizaciones futuras.
+
+Todos ellos utilizarán un mecanismo único de ejecución.
+
+## Definición
+
+Una Acción representa una operación de negocio capaz de modificar el estado del sistema.
+
+Toda Acción deberá:
+
+- Validar la operación.
+- Ejecutar el cambio.
+- Registrar la auditoría.
+- Generar los eventos correspondientes.
+- Devolver el resultado de la operación.
+
+## Ejemplos
+
+- CrearCancion
+- ActualizarCancion
+- ConsolidarLista
+- CrearParticipacion
+- CambiarEstadoCancion
+- AñadirFlag
+- QuitarFlag
+- AñadirTag
+- RecalcularEstadisticas
+
+## Motivación
+
+- Centralizar toda modificación.
+- Garantizar la trazabilidad.
+- Simplificar las pruebas.
+- Evitar modificaciones inconsistentes.
+- Unificar el comportamiento del sistema.
+
+## Consecuencias
+
+Toda modificación pasará por una Acción.
+
+Las Reglas nunca modificarán directamente la información.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Motor de reglas.
+- API.
+- Importaciones.
+- Interfaz de usuario.
+- Auditoría.
+
+# ADR-011 — Arquitectura basada en Eventos
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+Toda Acción ejecutada por GeminiFy generará uno o varios Eventos que describan los hechos producidos durante su ejecución.
+
+## Contexto
+
+Una Acción representa una intención.
+
+Los Eventos representan los hechos realmente ocurridos como consecuencia de esa Acción.
+
+## Definición
+
+Los Eventos constituyen el registro funcional del sistema.
+
+Ejemplos:
+
+- CancionCreada
+- ParticipacionCreada
+- EstadoCambiado
+- FlagAñadido
+- TagAñadido
+- EstadisticasRecalculadas
+- ListaImportada
+
+## Motivación
+
+Los principales objetivos son:
+
+- Mejorar la trazabilidad.
+- Facilitar la auditoría.
+- Permitir futuras integraciones.
+- Generar estadísticas.
+- Registrar el comportamiento real del sistema.
+
+## Consecuencias
+
+Una Acción podrá generar cero, uno o múltiples Eventos.
+
+Los Eventos nunca modificarán el sistema.
+
+Representarán únicamente hechos ya ocurridos.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Auditoría.
+- Estadísticas.
+- Integraciones.
+- Registro histórico.
+
+# ADR-012 — Arquitectura basada en Funciones
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+15/07/2026
+
+## Decisión
+
+GeminiFy separará el conocimiento del negocio de la toma de decisiones mediante un sistema de Funciones reutilizables.
+
+Las Funciones serán responsables de realizar cálculos, evaluaciones y comprobaciones, sin modificar el estado del sistema.
+
+## Contexto
+
+Durante el diseño del motor de reglas se identificó la necesidad de evitar reglas complejas y difíciles de mantener.
+
+Para ello se adopta una arquitectura donde las reglas delegan la lógica de negocio en Funciones especializadas.
+
+## Definición
+
+Una Función representa un proceso reutilizable que responde a una pregunta o realiza un cálculo.
+
+Las Funciones:
+
+- no modifican información;
+- no generan eventos;
+- no ejecutan acciones;
+- devuelven un resultado objetivo.
+
+## Ejemplos
+
+- EsCandidataAObservacion()
+- CalcularNotaMedia()
+- CalcularRanking()
+- TieneFlag()
+- ObtenerEstado()
+- CalcularTendencia()
+- ValidarTransicionEstado()
+
+## Motivación
+
+Los principales objetivos son:
+
+- Reutilizar lógica de negocio.
+- Simplificar las reglas.
+- Facilitar las pruebas.
+- Reducir la duplicidad de código.
+- Mejorar el mantenimiento.
+
+## Consecuencias
+
+Las Reglas pasarán a limitarse a decidir cuándo debe ejecutarse una Acción.
+
+Las Funciones concentrarán toda la lógica de cálculo y validación.
+
+## Impacto
+
+Esta decisión afecta a:
+
+- Motor de reglas.
+- Acciones.
+- Estadísticas.
+- Validaciones.
+- Arquitectura general del sistema.
