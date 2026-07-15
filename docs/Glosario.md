@@ -265,6 +265,50 @@ Mecanismo mediante el cual GeminiFy registra y conserva la trazabilidad de las o
 
 La Auditoría permite conocer qué ocurrió, cuándo ocurrió, cómo ocurrió y cuál fue su resultado.
 
+# 5. Estadísticas
 
+Los conceptos estadísticos representan el conocimiento obtenido por GeminiFy a partir del análisis de las Participaciones registradas en el Catálogo.
+
+Estos indicadores permiten evaluar la evolución de las Canciones y constituyen uno de los principales mecanismos de apoyo para la toma de decisiones y la generación de nuevas propuestas de listas.
+
+---
+
+## Puntuación
+
+Valor numérico asignado a una Canción dentro de una Participación.
+
+La Puntuación representa el resultado obtenido por una Canción en una Lista concreta y constituye la unidad básica para el cálculo de indicadores estadísticos.
+
+---
+
+## Nota Media
+
+Indicador estadístico que representa el valor medio de las Puntuaciones obtenidas por una Canción a lo largo de sus Participaciones.
+
+La Nota Media constituye uno de los principales indicadores utilizados para evaluar el comportamiento histórico de una Canción.
+
+---
+
+## Ranking
+
+Clasificación relativa de las Canciones obtenida a partir de uno o varios criterios de evaluación.
+
+El Ranking permite ordenar el Catálogo según los indicadores definidos por GeminiFy.
+
+---
+
+## Tendencia
+
+Indicador estadístico que refleja la evolución reciente del comportamiento de una Canción.
+
+La Tendencia permite identificar mejoras, estabilidad o deterioro en el rendimiento histórico de una Canción.
+
+---
+
+## Historial
+
+Conjunto de Participaciones, Estados y demás información registrada que describe la evolución de una Canción a lo largo del tiempo.
+
+El Historial constituye la memoria funcional de GeminiFy sobre cada Canción.
 
 
