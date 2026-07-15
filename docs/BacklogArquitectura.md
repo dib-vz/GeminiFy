@@ -228,3 +228,89 @@ La incorporación de este concepto podría requerir una reorganización de la se
 ## Próxima revisión
 
 Durante la elaboración de `ModeloDominio.md`.
+
+# BA-006 — Separación entre Componentes del Dominio y Componentes Técnicos
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Redacción de `Glosario.md`.
+
+## Descripción
+
+Durante la elaboración del Glosario se identificó la conveniencia de diferenciar claramente los conceptos propios del dominio funcional de GeminiFy de los componentes técnicos utilizados para su implementación.
+
+## Hipótesis
+
+La documentación podría organizarse distinguiendo dos niveles conceptuales:
+
+### Dominio
+
+Conceptos propios del negocio.
+
+Ejemplos:
+
+- Canción
+- Participación
+- Estado
+- Flag
+- Lista
+- Catálogo
+
+### Sistema
+
+Componentes técnicos responsables de la implementación.
+
+Ejemplos:
+
+- Base de Datos
+- Motor de Reglas
+- Motor de Estadísticas
+
+## Beneficios potenciales
+
+- Mejor separación de responsabilidades.
+- Mayor claridad documental.
+- Facilitar la evolución de la arquitectura.
+- Reducir el acoplamiento entre negocio e implementación.
+
+## Próxima revisión
+
+Durante la elaboración de `Arquitectura.md`.
+
+# BA-007 — Revisión del concepto "Historial"
+
+## Estado
+
+Pendiente de evaluación.
+
+## Origen
+
+Redacción de `Glosario.md` — Sección 5. Estadísticas.
+
+## Descripción
+
+Durante la definición del concepto Historial se observó que podría no pertenecer realmente al ámbito de las Estadísticas.
+
+## Hipótesis
+
+El Historial podría constituir un concepto transversal del dominio, al representar la evolución completa de una Canción a lo largo de su ciclo de vida.
+
+En ese caso, dejaría de considerarse un concepto estadístico y pasaría a formar parte del modelo principal del dominio.
+
+## Beneficios potenciales
+
+- Mejor organización conceptual del Glosario.
+- Mayor coherencia con el Modelo de Dominio.
+- Separación clara entre información histórica e indicadores estadísticos.
+
+## Riesgos
+
+La reclasificación podría requerir reorganizar la estructura del Glosario.
+
+## Próxima revisión
+
+Durante la elaboración de `ModeloDominio.md`.
