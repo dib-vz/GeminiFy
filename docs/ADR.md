@@ -67,6 +67,7 @@ Los ADR constituyen la referencia oficial sobre la arquitectura del sistema y pr
 - ADR-012 — Arquitectura basada en Funciones
 - ADR-013 — Clasificación de los Componentes del Sistema
 - ADR-014 — La Canción como entidad central del modelo de dominio
+- ADR-015 — Modelo de Dominio centrado en la Canción
 
 ---
 
@@ -1198,7 +1199,7 @@ Esta decisión afecta a toda la arquitectura de GeminiFy y constituye el modelo 
 
 ## Estado
 
-Aprobado.
+🟢 Aprobado
 
 ## Fecha
 
@@ -1235,3 +1236,48 @@ Los Estados, Flags, Tags y Estadísticas describen o caracterizan una Canción, 
 ## Justificación
 
 Este enfoque representa con mayor fidelidad el propósito de GeminiFy: construir un catálogo musical vivo cuyo conocimiento evoluciona a partir de las Participaciones registradas y sirve como base para la generación de nuevas propuestas de listas.
+
+# ADR-015 — Modelo de Dominio centrado en la Canción
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+16/07/2026
+
+## Contexto
+
+Tras establecer en el ADR-014 que la Canción constituye la entidad central del modelo de dominio de GeminiFy, se identificó la necesidad de definir un criterio uniforme para organizar el resto de conceptos del dominio.
+
+El objetivo es construir un modelo coherente, fácilmente extensible y alineado con la finalidad principal del sistema: gestionar el conocimiento asociado a las Canciones.
+
+## Decisión
+
+El Modelo de Dominio de GeminiFy se organizará tomando la Canción como núcleo estructural.
+
+Todos los conceptos del dominio deberán clasificarse según la función que desempeñan respecto a una Canción.
+
+Se establecen las siguientes categorías:
+
+- Entidad Central.
+- Información Asociada.
+- Clasificación.
+- Información Estadística.
+- Relaciones.
+- Restricciones.
+- Información Derivada.
+
+Esta organización tendrá carácter conceptual y servirá como referencia para el diseño del Modelo de Dominio, la Base de Datos y la Arquitectura del sistema.
+
+## Consecuencias
+
+- El Modelo de Dominio se diseñará de forma jerárquica alrededor de la Canción.
+- Se favorecerá una separación clara entre identidad, clasificación, información histórica e información derivada.
+- La incorporación de nuevos conceptos deberá realizarse ubicándolos dentro de una de las categorías definidas.
+- Se reducirá el acoplamiento entre conceptos y se facilitará la evolución futura del modelo.
+
+## Justificación
+
+Este enfoque representa con mayor fidelidad la naturaleza de GeminiFy y permite que el modelo de dominio evolucione de forma ordenada, manteniendo siempre la Canción como elemento central del conocimiento gestionado por el sistema.
