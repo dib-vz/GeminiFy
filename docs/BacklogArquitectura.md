@@ -1,5 +1,3 @@
-## Observaciones pendientes
-
 # BA-001 — Biblioteca Musical como concepto independiente del Catálogo
 
 ## Estado
