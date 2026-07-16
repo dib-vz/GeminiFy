@@ -384,3 +384,33 @@ Entre otros:
 
 Disponer de una política completa que permita resolver automáticamente cualquier proceso de consolidación futura.
 
+# BA-010 — Incorporación del concepto "Canonización" al Glosario
+
+## Estado
+
+Pendiente.
+
+## Origen
+
+Definición del proceso de canonización del catálogo durante el diseño del Modelo de Dominio y aprobación del ADR-017.
+
+## Descripción
+
+Se ha identificado el concepto "Canonización" como un término propio del dominio de GeminiFy.
+
+Una vez estabilizado el Modelo de Dominio y las reglas de consolidación, deberá incorporarse al Glosario con una definición formal que describa el proceso mediante el cual GeminiFy selecciona la representación canónica de una Canción cuando existen varias alternativas.
+
+## Objetivo
+
+Mantener el Glosario alineado con la evolución del Modelo de Dominio, incorporando únicamente conceptos cuya definición haya alcanzado un grado suficiente de estabilidad.
+
+## Dependencias
+
+- ADR-017 — Canonización del Catálogo Musical.
+- ModeloDominio.md.
+- ReglasNegocio.md.
+
+## Próxima revisión
+
+Al finalizar la primera versión del Modelo de Dominio.
+
