@@ -484,3 +484,59 @@ La revisión deberá analizar, entre otros aspectos:
 
 Determinar la solución que proporcione mayor flexibilidad manteniendo la simplicidad del modelo en la versión 1.0.
 
+# BA-013 — Evaluación del ciclo de vida de las Listas
+
+## Estado
+
+Pendiente.
+
+## Origen
+
+Modelado de la entidad Lista.
+
+## Descripción
+
+Evaluar si GeminiFy debe distinguir entre listas generadas como propuesta y listas utilizadas en entrenamientos reales.
+
+Actualmente el Modelo de Dominio considera la Lista como el registro histórico de utilización del Catálogo.
+
+Se analizará si resulta conveniente incorporar diferentes estados o incluso diferentes tipos de Lista para representar todo su ciclo de vida.
+
+## Objetivo
+
+Determinar si la generación y la ejecución de una Lista deben modelarse como una única entidad o como diferentes fases de un mismo proceso.
+
+## Próxima revisión
+
+Durante el diseño de los procesos de generación automática de listas.
+
+# BA-014 — Modelado del proceso de aprendizaje del Catálogo
+
+## Estado
+
+Pendiente.
+
+## Origen
+
+Modelado de las entidades Canción y Lista.
+
+## Descripción
+
+Definir cómo GeminiFy transforma la utilización de las Canciones dentro de las Listas en conocimiento persistente del Catálogo.
+
+Se estudiará qué información debe aprender el sistema, cómo evoluciona con el tiempo y qué procesos actualizan dicho conocimiento.
+
+## Objetivo
+
+Modelar formalmente el aprendizaje del sistema como uno de los procesos fundamentales de GeminiFy.
+
+## Dependencias
+
+- ModeloDominio.md.
+- Procesos.
+- ReglasNegocio.md.
+
+## Próxima revisión
+
+Tras finalizar el Modelo de Dominio.
+
