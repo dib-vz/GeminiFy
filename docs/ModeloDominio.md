@@ -245,3 +245,116 @@ Una entidad deberá cumplir las siguientes características:
 El hecho de que una entidad dependa de otras para su creación o existencia no impide que sea considerada una entidad.
 
 La clasificación definitiva de cada concepto como entidad, objeto de valor, atributo o información derivada se realizará durante el desarrollo del Modelo de Dominio.
+
+# 2. Entidad Central
+
+## 2.1 Canción
+
+### Descripción
+
+La Canción constituye la entidad central del Modelo de Dominio de GeminiFy y representa la unidad fundamental de conocimiento gestionada por el sistema.
+
+Cada Canción identifica una interpretación musical única dentro del Catálogo y constituye el elemento sobre el que GeminiFy registra, organiza, analiza y mantiene toda la información necesaria para generar propuestas musicales adaptadas a los objetivos del usuario.
+
+Una Canción puede participar en múltiples Listas a lo largo de su ciclo de vida, acumulando información histórica, estadística y de clasificación que permite al sistema incrementar progresivamente su conocimiento sobre ella.
+
+La identidad de una Canción permanece invariable durante toda su existencia, con independencia de la evolución de sus atributos, clasificaciones, participaciones o indicadores estadísticos.
+
+---
+
+### Responsabilidad
+
+La responsabilidad de la Canción consiste en representar una interpretación musical única dentro del Catálogo y actuar como núcleo sobre el que se organiza todo el conocimiento gestionado por GeminiFy.
+
+La Canción concentra la información descriptiva, las relaciones con el resto de entidades, el historial de Participaciones, las clasificaciones, las estadísticas y cualquier otro dato necesario para apoyar los procesos de aprendizaje, consolidación y generación de propuestas de listas.
+
+---
+
+### Identidad
+
+Cada Canción dispone de dos mecanismos de identificación:
+
+#### Identidad técnica
+
+Cada Canción posee un identificador interno único, permanente e inmutable con el formato:
+
+`GEM-xxxxxx`
+
+Este identificador constituye la identidad persistente de la entidad y será utilizado por todos los componentes internos del sistema.
+
+#### Identidad de negocio
+
+La identidad funcional de una Canción viene determinada por la combinación de:
+
+- Título.
+- Artista o conjunto de artistas que constituyen la interpretación original de la Canción.
+
+Una interpretación realizada por un artista diferente constituye una Canción distinta.
+
+Las colaboraciones únicamente generarán una nueva Canción cuando den lugar a una obra inédita.
+
+Las colaboraciones realizadas sobre una Canción previamente existente no generarán una nueva identidad, salvo decisión expresa del usuario.
+
+La selección de la versión definitiva que formará parte del Catálogo se rige por las reglas de canonización definidas en el ADR-017.
+
+---
+
+### Relaciones
+
+La Canción constituye el núcleo del Modelo de Dominio y mantiene relaciones con los siguientes conceptos:
+
+- Artista.
+- Lista.
+- Participación.
+- Estado.
+- Flags.
+- Tags.
+- Estadísticas.
+
+Todas las relaciones del dominio se establecen tomando la Canción como punto de referencia.
+
+---
+
+### Atributos
+
+La Canción almacena la información descriptiva necesaria para identificarla, clasificarla y utilizarla dentro de GeminiFy.
+
+Los atributos concretos se definirán en el Diccionario de Datos.
+
+De forma conceptual, podrán clasificarse en:
+
+- Identificación.
+- Información musical.
+- Clasificación.
+- Metadatos.
+- Estadísticas.
+- Auditoría.
+
+---
+
+### Restricciones
+
+La entidad Canción deberá cumplir las siguientes restricciones generales:
+
+- Toda Canción deberá poseer un identificador técnico único.
+- Toda Canción deberá disponer de una identidad de negocio válida.
+- No podrán coexistir dos Canciones con la misma identidad de negocio.
+- Una Canción únicamente podrá encontrarse en un Estado cada vez.
+- Las Flags son independientes del Estado y podrán coexistir entre sí.
+- Las reglas de canonización determinarán la representación definitiva de cada Canción dentro del Catálogo.
+
+---
+
+### Información derivada
+
+A partir de la información registrada sobre una Canción, GeminiFy podrá calcular información derivada, entre ella:
+
+- Nota media.
+- Tendencia.
+- Número de participaciones.
+- Historial de rendimiento.
+- Indicadores de estabilidad.
+- Indicadores de uso.
+- Cualquier otro indicador definido por las Reglas de Negocio.
+
+La información derivada no forma parte de la identidad de la Canción y podrá recalcularse en cualquier momento.
