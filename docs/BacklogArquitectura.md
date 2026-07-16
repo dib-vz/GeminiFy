@@ -356,3 +356,31 @@ Una revisión prematura podría provocar nuevas modificaciones mientras el Model
 ## Próxima revisión
 
 Una vez finalizados `ModeloDominio.md` y `Arquitectura.md`, antes de declarar estable la versión 1.0 de la documentación funcional.
+
+# BA-009 — Definición de la Política de Canonización
+
+## Estado
+
+Pendiente.
+
+## Descripción
+
+Revisar y ampliar las reglas de canonización del catálogo para contemplar todos los escenarios posibles.
+
+Entre otros:
+
+- Versiones acústicas.
+- Versiones sinfónicas.
+- Versiones electrónicas.
+- Mashups.
+- Medleys.
+- Regrabaciones oficiales.
+- Versiones censuradas.
+- Versiones internacionales.
+- Versiones en otros idiomas.
+- Reinterpretaciones del propio artista.
+
+## Objetivo
+
+Disponer de una política completa que permita resolver automáticamente cualquier proceso de consolidación futura.
+
