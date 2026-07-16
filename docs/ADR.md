@@ -70,6 +70,7 @@ Los ADR constituyen la referencia oficial sobre la arquitectura del sistema y pr
 - ADR-015 — Modelo de Dominio centrado en la Canción
 - ADR-016 — Identidad de una Canción
 - ADR-017 — Canonización del Catálogo Musical
+- ADR-018 — Núcleo funcional del Modelo de Dominio
 
 ---
 
@@ -1388,4 +1389,45 @@ El proceso de consolidación deberá aplicar estas reglas para determinar qué C
 
 GeminiFy persigue construir un catálogo optimizado para la generación automática de listas musicales, no una colección exhaustiva de todas las ediciones publicadas de una obra.
 
+# ADR-018 — Núcleo funcional del Modelo de Dominio
 
+## Estado
+
+🟢 Aprobado
+
+## Contexto
+
+Durante la definición del Modelo de Dominio se identificó que el funcionamiento esencial de GeminiFy no depende exclusivamente de la entidad Canción, sino de la interacción coordinada entre un conjunto reducido de entidades fundamentales.
+
+Era necesario establecer explícitamente cuáles constituyen el núcleo funcional del sistema y cómo se relacionan entre sí.
+
+## Decisión
+
+Se establece que el núcleo funcional del Modelo de Dominio de GeminiFy está constituido por las siguientes entidades:
+
+- Artista.
+- Canción.
+- Participación.
+- Lista.
+
+Cada una de ellas desempeña una responsabilidad específica e insustituible dentro del dominio.
+
+- El Artista representa al intérprete de las Canciones.
+- La Canción constituye la unidad principal de conocimiento del Catálogo.
+- La Lista representa el contexto de utilización de las Canciones.
+- La Participación registra cada utilización concreta de una Canción dentro de una Lista y constituye el vínculo entre el conocimiento permanente y el contexto en el que dicho conocimiento se genera.
+
+La relación entre Canción y Lista se establece exclusivamente mediante la entidad Participación.
+
+## Consecuencias
+
+- Se refuerza la separación de responsabilidades entre las entidades principales.
+- Se evita la existencia de relaciones directas innecesarias entre Canción y Lista.
+- El Modelo de Dominio adquiere una estructura más coherente y extensible.
+- La Participación pasa a reconocerse como la entidad operacional del dominio, responsable de registrar los eventos que alimentan el aprendizaje del sistema.
+
+## ADR relacionados
+
+- ADR-014 — La Canción como entidad central.
+- ADR-015 — Organización del Modelo de Dominio.
+- ADR-017 — Canonización de Canciones.
