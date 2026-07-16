@@ -162,6 +162,8 @@ Para la elaboración de este documento se aplican los siguientes principios:
 
 ## 8. Información Derivada
 
+---
+
 # 1. Principios del Modelo
 
 El Modelo de Dominio de GeminiFy representa el negocio desde una perspectiva conceptual, independiente de cualquier decisión tecnológica o de implementación.
