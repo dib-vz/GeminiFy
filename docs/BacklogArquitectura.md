@@ -540,3 +540,40 @@ Modelar formalmente el aprendizaje del sistema como uno de los procesos fundamen
 
 Tras finalizar el Modelo de Dominio.
 
+# BA-015 — Incorporación de una visión conceptual al Modelo de Dominio
+
+## Estado
+
+Pendiente.
+
+## Origen
+
+Finalización del modelado de las entidades principales del Modelo de Dominio.
+
+## Descripción
+
+Una vez estabilizada la versión 1.0 del Modelo de Dominio, revisar la estructura del documento para incorporar un capítulo inicial que presente una visión conceptual del dominio antes de la descripción detallada de las entidades.
+
+Este capítulo deberá incluir un diagrama conceptual de alto nivel y una explicación de las relaciones fundamentales entre las entidades principales de GeminiFy.
+
+El objetivo es facilitar la comprensión del dominio sin necesidad de leer previamente la definición completa de cada entidad.
+
+## Objetivo
+
+Mejorar la legibilidad y comprensión del Modelo de Dominio, separando la visión global del sistema de la definición detallada de sus entidades.
+
+## Beneficios
+
+- Facilitar la incorporación de nuevos colaboradores al proyecto.
+- Comprender la estructura del dominio de un solo vistazo.
+- Diferenciar claramente el modelo conceptual del detalle de implementación.
+- Mejorar la coherencia y calidad de la documentación arquitectónica.
+
+## Dependencias
+
+- Finalización de la versión 1.0 del Modelo de Dominio.
+- Revisión arquitectónica global de la documentación.
+
+## Próxima revisión
+
+Durante el cierre del Modelo de Dominio v1.0.
