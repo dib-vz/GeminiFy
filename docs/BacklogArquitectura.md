@@ -414,3 +414,46 @@ Mantener el Glosario alineado con la evolución del Modelo de Dominio, incorpora
 
 Al finalizar la primera versión del Modelo de Dominio.
 
+# BA-011 — Clasificación de los conceptos del Modelo de Dominio
+
+## Estado
+
+Pendiente.
+
+## Origen
+
+Modelado de la entidad Canción.
+
+## Descripción
+
+Durante la definición de la entidad Canción se identificó que algunos conceptos inicialmente considerados entidades podrían corresponder realmente a Objetos de Valor (Value Objects) u otros elementos del Modelo de Dominio.
+
+Se propone revisar la clasificación de todos los conceptos del dominio una vez finalizado el modelado de las entidades principales.
+
+## Objetivo
+
+Verificar que cada concepto del dominio esté correctamente clasificado antes de cerrar la versión 1.0 del Modelo de Dominio.
+
+La revisión deberá determinar qué conceptos pertenecen a cada una de las siguientes categorías:
+
+- Entidades.
+- Objetos de Valor (Value Objects).
+- Atributos.
+- Información Derivada.
+
+## Beneficios
+
+- Mejorar la claridad del Modelo de Dominio.
+- Reducir el acoplamiento entre conceptos.
+- Facilitar el diseño de la Base de Datos y de la API.
+- Mantener una terminología coherente con los principios de Domain-Driven Design (DDD).
+
+## Dependencias
+
+- Finalización del modelado de las entidades Artista, Lista y Participación.
+- ADR-014.
+- ADR-015.
+
+## Próxima revisión
+
+Antes de declarar estable la versión 1.0 de `ModeloDominio.md`.
