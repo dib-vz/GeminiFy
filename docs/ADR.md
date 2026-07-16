@@ -68,6 +68,7 @@ Los ADR constituyen la referencia oficial sobre la arquitectura del sistema y pr
 - ADR-013 — Clasificación de los Componentes del Sistema
 - ADR-014 — La Canción como entidad central del modelo de dominio
 - ADR-015 — Modelo de Dominio centrado en la Canción
+- ADR-016 — Identidad de una Canción
 
 ---
 
@@ -1281,3 +1282,81 @@ Esta organización tendrá carácter conceptual y servirá como referencia para 
 ## Justificación
 
 Este enfoque representa con mayor fidelidad la naturaleza de GeminiFy y permite que el modelo de dominio evolucione de forma ordenada, manteniendo siempre la Canción como elemento central del conocimiento gestionado por el sistema.
+
+# ADR-016 — Identidad de una Canción
+
+## Estado
+
+🟡 Propuesto
+
+## Fecha
+
+17/07/2026
+
+## Contexto
+
+Durante la definición de la entidad **Canción** en el Modelo de Dominio se identificó la necesidad de establecer un criterio unívoco para determinar cuándo dos registros representan la misma Canción y cuándo deben considerarse elementos distintos del Catálogo.
+
+GeminiFy gestiona el conocimiento asociado a las interpretaciones musicales utilizadas para generar propuestas de listas adaptadas a distintos objetivos. Por ello, la definición de la identidad de una Canción constituye una decisión fundamental del dominio.
+
+## Situación actual
+
+Se plantea distinguir dos niveles de identificación:
+
+### Identidad técnica
+
+Cada Canción dispondrá de un identificador interno único, permanente e inmutable con el formato:
+
+`GEM-xxxxxx`
+
+Este identificador constituirá la identidad persistente de la entidad y será utilizado por todos los componentes internos del sistema.
+
+### Clave de negocio
+
+Inicialmente se propuso utilizar la combinación:
+
+- Título
+- Artista
+
+como clave de negocio para identificar funcionalmente una Canción.
+
+## Problema identificado
+
+Durante el análisis del dominio se detectó que un mismo artista puede publicar varias versiones diferenciadas de una misma obra musical, por ejemplo:
+
+- Original
+- Live
+- Acoustic
+- Instrumental
+- Remix
+- Remaster
+- Demo
+- Radio Edit
+- Extended Version
+
+Estas versiones presentan características propias (duración, BPM, energía, estructura, etc.) que pueden influir de forma significativa en el comportamiento de la Canción dentro de GeminiFy.
+
+Como consecuencia, la combinación **Título + Artista** no resulta suficiente para identificar de forma unívoca una Canción dentro del dominio.
+
+## Decisión pendiente
+
+Antes de aprobar este ADR será necesario definir formalmente el concepto **Versión** dentro del Modelo de Dominio y determinar:
+
+- Si la Versión forma parte de la identidad de negocio.
+- Cómo se representa.
+- Qué atributos la describen.
+- Qué impacto tiene sobre la consolidación, la detección de duplicados y las importaciones desde plataformas externas.
+
+Hasta que esta cuestión quede resuelta, la definición definitiva de la clave de negocio de la entidad Canción permanecerá abierta.
+
+## Consecuencias
+
+La aprobación definitiva del Modelo de Dominio y de la entidad Canción queda condicionada a la resolución de este ADR.
+
+## Próximos pasos
+
+- Definir el concepto de Versión.
+- Evaluar si constituye un atributo, un objeto de valor o un concepto independiente del dominio.
+- Revisar la clave de negocio de la entidad Canción.
+- Actualizar este ADR y cambiar su estado a **Aprobado** cuando exista una solución definitiva.
+
