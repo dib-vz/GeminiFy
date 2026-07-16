@@ -457,3 +457,30 @@ La revisión deberá determinar qué conceptos pertenecen a cada una de las sigu
 ## Próxima revisión
 
 Antes de declarar estable la versión 1.0 de `ModeloDominio.md`.
+
+# BA-012 — Revisión de la relación entre Canción y Artista
+
+## Estado
+
+Pendiente.
+
+## Origen
+
+Modelado de la entidad Artista.
+
+## Descripción
+
+Evaluar si la relación directa entre Canción y Artista resulta suficiente para soportar la evolución futura de GeminiFy o si debe sustituirse por una entidad intermedia que represente explícitamente los créditos de interpretación.
+
+La revisión deberá analizar, entre otros aspectos:
+
+- Artista principal.
+- Colaboradores.
+- Orden de aparición.
+- Roles de interpretación.
+- Créditos específicos.
+
+## Objetivo
+
+Determinar la solución que proporcione mayor flexibilidad manteniendo la simplicidad del modelo en la versión 1.0.
+
