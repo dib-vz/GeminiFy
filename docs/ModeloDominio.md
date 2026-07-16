@@ -299,7 +299,11 @@ Este identificador constituye la identidad persistente de la entidad y será uti
 La identidad funcional de una Canción viene determinada por la combinación de:
 
 - Título.
-- Artista o conjunto de artistas que constituyen la interpretación original de la Canción.
+- Interpretación canónica.
+
+La interpretación canónica representa la versión de referencia seleccionada por GeminiFy para identificar una Canción dentro del Catálogo.
+
+Su determinación se realiza mediante las reglas de canonización definidas por las Reglas de Negocio y el ADR-017.
 
 Una interpretación realizada por un artista diferente constituye una Canción distinta.
 
@@ -316,14 +320,15 @@ La selección de la versión definitiva que formará parte del Catálogo se rige
 La Canción constituye el núcleo del Modelo de Dominio y mantiene relaciones con los siguientes conceptos:
 
 - Artista.
-- Lista.
 - Participación.
 - Estado.
 - Flags.
 - Tags.
 - Estadísticas.
 
-Todas las relaciones del dominio se establecen tomando la Canción como punto de referencia.
+La relación entre una Canción y una Lista se establece exclusivamente mediante la entidad Participación.
+
+Todas las relaciones del dominio se definen tomando la Canción como punto de referencia.
 
 ---
 
