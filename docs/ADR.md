@@ -69,6 +69,7 @@ Los ADR constituyen la referencia oficial sobre la arquitectura del sistema y pr
 - ADR-014 — La Canción como entidad central del modelo de dominio
 - ADR-015 — Modelo de Dominio centrado en la Canción
 - ADR-016 — Identidad de una Canción
+- ADR-017 — Canonización del Catálogo Musical
 
 ---
 
@@ -1287,7 +1288,7 @@ Este enfoque representa con mayor fidelidad la naturaleza de GeminiFy y permite 
 
 ## Estado
 
-🟡 Propuesto
+🟢 Aprobado
 
 ## Fecha
 
@@ -1295,68 +1296,96 @@ Este enfoque representa con mayor fidelidad la naturaleza de GeminiFy y permite 
 
 ## Contexto
 
-Durante la definición de la entidad **Canción** en el Modelo de Dominio se identificó la necesidad de establecer un criterio unívoco para determinar cuándo dos registros representan la misma Canción y cuándo deben considerarse elementos distintos del Catálogo.
+GeminiFy no gestiona composiciones musicales abstractas, sino un catálogo de Canciones orientado a la generación automática de listas de reproducción para running.
 
-GeminiFy gestiona el conocimiento asociado a las interpretaciones musicales utilizadas para generar propuestas de listas adaptadas a distintos objetivos. Por ello, la definición de la identidad de una Canción constituye una decisión fundamental del dominio.
+Resulta necesario definir cuándo dos registros representan la misma Canción y cuándo deben considerarse entidades diferentes dentro del dominio.
 
-## Situación actual
+## Decisión
 
-Se plantea distinguir dos niveles de identificación:
+La identidad de negocio de una Canción queda definida por la combinación de:
 
-### Identidad técnica
+- Título
+- Artista o conjunto de artistas que constituyen la interpretación original de dicha Canción.
 
-Cada Canción dispondrá de un identificador interno único, permanente e inmutable con el formato:
+Cada Canción dispondrá además de un identificador técnico único con formato:
 
 `GEM-xxxxxx`
 
-Este identificador constituirá la identidad persistente de la entidad y será utilizado por todos los componentes internos del sistema.
+que constituirá su identidad permanente dentro del sistema.
 
-### Clave de negocio
+Una interpretación realizada por un artista diferente constituirá siempre una Canción distinta.
 
-Inicialmente se propuso utilizar la combinación:
+Las colaboraciones únicamente constituirán una nueva Canción cuando den lugar a una obra inédita.
 
-- Título
-- Artista
-
-como clave de negocio para identificar funcionalmente una Canción.
-
-## Problema identificado
-
-Durante el análisis del dominio se detectó que un mismo artista puede publicar varias versiones diferenciadas de una misma obra musical, por ejemplo:
-
-- Original
-- Live
-- Acoustic
-- Instrumental
-- Remix
-- Remaster
-- Demo
-- Radio Edit
-- Extended Version
-
-Estas versiones presentan características propias (duración, BPM, energía, estructura, etc.) que pueden influir de forma significativa en el comportamiento de la Canción dentro de GeminiFy.
-
-Como consecuencia, la combinación **Título + Artista** no resulta suficiente para identificar de forma unívoca una Canción dentro del dominio.
-
-## Decisión pendiente
-
-Antes de aprobar este ADR será necesario definir formalmente el concepto **Versión** dentro del Modelo de Dominio y determinar:
-
-- Si la Versión forma parte de la identidad de negocio.
-- Cómo se representa.
-- Qué atributos la describen.
-- Qué impacto tiene sobre la consolidación, la detección de duplicados y las importaciones desde plataformas externas.
-
-Hasta que esta cuestión quede resuelta, la definición definitiva de la clave de negocio de la entidad Canción permanecerá abierta.
+Las colaboraciones realizadas sobre una Canción previamente existente no generarán una nueva identidad, salvo decisión expresa del usuario.
 
 ## Consecuencias
 
-La aprobación definitiva del Modelo de Dominio y de la entidad Canción queda condicionada a la resolución de este ADR.
+- La identidad técnica será permanente.
+- La identidad de negocio será utilizada durante los procesos de consolidación.
+- La detección de duplicados utilizará la identidad de negocio.
+- La selección de la versión definitiva del catálogo queda fuera del alcance de este ADR y se regula mediante el ADR-017.
 
-## Próximos pasos
+## Justificación
 
-- Definir el concepto de Versión.
-- Evaluar si constituye un atributo, un objeto de valor o un concepto independiente del dominio.
-- Revisar la clave de negocio de la entidad Canción.
-- Actualizar este ADR y cambiar su estado a **Aprobado** cuando exista una solución definitiva.
+Esta decisión refleja el objetivo de GeminiFy de construir un catálogo coherente y estable sobre el que desarrollar el conocimiento del sistema.
+
+# ADR-017 — Canonización del Catálogo Musical
+
+## Estado
+
+🟢 Aprobado
+
+## Fecha
+
+17/07/2026
+
+## Contexto
+
+Durante la consolidación del catálogo pueden existir múltiples interpretaciones o ediciones de una misma Canción.
+
+GeminiFy no pretende conservar todas ellas, sino mantener una única representación canónica de cada Canción.
+
+## Decisión
+
+Se establecen las siguientes reglas de canonización.
+
+### Prioridad de versiones
+
+Como norma general se conservará la versión de estudio original.
+
+Las siguientes versiones no formarán parte del catálogo salvo decisión expresa del usuario:
+
+- Live
+- Demo
+- Radio Edit
+- Extended Version
+- Karaoke
+- Instrumental
+- Versiones promocionales
+
+Las versiones Remaster no generan una nueva identidad.
+
+### Covers
+
+Un Cover constituye una Canción diferente al modificar el artista principal de la interpretación.
+
+Podrán coexistir dentro del catálogo.
+
+### Colaboraciones
+
+Las colaboraciones que den lugar a una Canción inédita constituirán una nueva Canción.
+
+Las colaboraciones sobre Canciones previamente existentes no generarán una nueva identidad y, por defecto, prevalecerá la versión original.
+
+El usuario podrá sustituir la versión canónica cuando considere que una colaboración representa mejor su catálogo personal.
+
+## Consecuencias
+
+El proceso de consolidación deberá aplicar estas reglas para determinar qué Canción permanecerá en el catálogo.
+
+## Justificación
+
+GeminiFy persigue construir un catálogo optimizado para la generación automática de listas musicales, no una colección exhaustiva de todas las ediciones publicadas de una obra.
+
 
