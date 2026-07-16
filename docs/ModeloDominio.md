@@ -246,6 +246,18 @@ El hecho de que una entidad dependa de otras para su creación o existencia no i
 
 La clasificación definitiva de cada concepto como entidad, objeto de valor, atributo o información derivada se realizará durante el desarrollo del Modelo de Dominio.
 
+---
+
+## 1.9 Resolución de ambigüedades
+
+El Modelo de Dominio de GeminiFy asume que la información procedente de fuentes externas puede presentar ambigüedades, inconsistencias o duplicidades.
+
+Por este motivo, los atributos descriptivos de una entidad no constituyen por sí mismos un mecanismo fiable de identificación.
+
+Toda entidad dispondrá de una identidad técnica única y permanente, mientras que la resolución de posibles ambigüedades entre entidades se realizará mediante los procesos de consolidación definidos por las Reglas de Negocio.
+
+La consolidación será responsable de detectar posibles coincidencias, proponer alternativas y garantizar la integridad del Catálogo sin comprometer la estabilidad de las identidades internas del sistema.
+
 # 2. Entidad Central
 
 ## 2.1 Canción
@@ -358,3 +370,111 @@ A partir de la información registrada sobre una Canción, GeminiFy podrá calcu
 - Cualquier otro indicador definido por las Reglas de Negocio.
 
 La información derivada no forma parte de la identidad de la Canción y podrá recalcularse en cualquier momento.
+
+## 2.2 Artista
+
+### Descripción
+
+El Artista representa a la persona, grupo musical o entidad responsable de la interpretación de una o varias Canciones dentro del Catálogo de GeminiFy.
+
+Su finalidad es identificar de forma única a los intérpretes de las Canciones, permitiendo establecer relaciones consistentes entre todas las interpretaciones registradas en el sistema.
+
+Un Artista puede participar como intérprete principal o como colaborador en una o varias Canciones.
+
+El nombre artístico constituye únicamente una característica descriptiva del intérprete y no determina su identidad dentro del sistema.
+
+---
+
+### Responsabilidad
+
+La responsabilidad del Artista consiste en representar de forma única a cada intérprete del Catálogo y actuar como punto común de relación entre todas las Canciones en las que participa.
+
+El Artista concentra exclusivamente la información propia del intérprete y no almacena información específica de las Canciones, la cual pertenece a la entidad Canción.
+
+Asimismo, proporciona un punto estable de referencia para mantener la integridad de las relaciones entre Canciones e intérpretes a lo largo del tiempo.
+
+---
+
+### Identidad
+
+Cada Artista dispone de una identidad técnica única y permanente.
+
+#### Identidad técnica
+
+Cada Artista posee un identificador interno único, permanente e inmutable con el formato:
+
+`ART-xxxxxx`
+
+Este identificador constituye la identidad persistente de la entidad y será utilizado por todos los componentes internos del sistema.
+
+#### Identificación funcional
+
+El nombre artístico constituye un atributo descriptivo del Artista y no garantiza por sí mismo su unicidad dentro del sistema.
+
+Podrán existir diferentes Artistas con el mismo nombre artístico, así como un mismo Artista podrá modificar su nombre a lo largo de su trayectoria sin perder su identidad dentro de GeminiFy.
+
+La detección y resolución de posibles ambigüedades o duplicidades entre Artistas se realizará mediante los procesos de consolidación definidos por las Reglas de Negocio.
+
+La identidad técnica del Artista permanecerá invariable durante todo su ciclo de vida.
+
+---
+
+### Relaciones
+
+El Artista mantiene relaciones con las siguientes entidades del dominio:
+
+- Canción.
+
+Un Artista puede interpretar ninguna, una o múltiples Canciones.
+
+Toda Canción deberá estar asociada, al menos, a un Artista.
+
+Las colaboraciones entre varios Artistas se representarán mediante la asociación de una misma Canción con todos los intérpretes participantes.
+
+La forma definitiva de modelar esta relación podrá evolucionar en futuras versiones del sistema sin modificar el Modelo de Dominio.
+
+---
+
+### Atributos
+
+El Artista almacena exclusivamente información propia del intérprete.
+
+Conceptualmente, sus atributos podrán clasificarse en las siguientes categorías:
+
+- Identificación.
+- Información descriptiva.
+- Clasificación.
+- Metadatos.
+- Auditoría.
+
+La definición detallada de cada atributo se realizará en el Diccionario de Datos.
+
+---
+
+### Restricciones
+
+La entidad Artista deberá cumplir las siguientes restricciones generales:
+
+- Todo Artista deberá disponer de un identificador técnico único.
+- Todo Artista podrá participar en ninguna, una o múltiples Canciones.
+- Toda Canción deberá estar asociada al menos a un Artista.
+- El nombre artístico no constituye un criterio de unicidad.
+- La identidad de un Artista nunca podrá modificarse una vez creada.
+- La eliminación de un Artista no podrá comprometer la integridad referencial del Catálogo.
+
+---
+
+### Información derivada
+
+A partir de la información registrada sobre un Artista, GeminiFy podrá calcular información derivada, entre ella:
+
+- Número de Canciones interpretadas.
+- Número de Participaciones acumuladas.
+- Puntuación media de sus Canciones.
+- Distribución por géneros musicales.
+- Distribución por décadas.
+- Indicadores de utilización.
+- Indicadores de rendimiento dentro del Catálogo.
+- Cualquier otro indicador definido por las Reglas de Negocio.
+
+La información derivada no forma parte de la identidad del Artista y podrá recalcularse en cualquier momento.
