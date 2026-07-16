@@ -583,3 +583,106 @@ A partir de la información registrada sobre una Lista, GeminiFy podrá calcular
 - Cualquier otro indicador definido por las Reglas de Negocio.
 
 La información derivada podrá recalcularse en cualquier momento y no forma parte de la identidad de la Lista.
+
+## 2.4 Participación
+
+### Descripción
+
+La Participación representa el hecho de que una Canción forma parte de una Lista determinada.
+
+Cada Participación constituye el registro individual de utilización de una Canción dentro de un contexto concreto de reproducción.
+
+Además de establecer la relación entre la Canción y la Lista, la Participación almacena toda la información específica generada durante dicha utilización y constituye la unidad básica sobre la que GeminiFy registra experiencia y genera conocimiento.
+
+La Participación representa un evento histórico único e irrepetible dentro del sistema.
+
+---
+
+### Responsabilidad
+
+La responsabilidad de la Participación consiste en registrar cada utilización de una Canción dentro de una Lista y conservar toda la información específica generada durante dicha utilización.
+
+La Participación conecta el conocimiento permanente almacenado por la Canción con el contexto concreto representado por la Lista.
+
+Constituye el origen de la mayor parte de la información utilizada posteriormente para calcular estadísticas, tendencias e indicadores del Catálogo.
+
+---
+
+### Identidad
+
+Cada Participación dispone de una identidad técnica única y permanente.
+
+#### Identidad técnica
+
+Cada Participación posee un identificador interno único con el formato:
+
+`PAR-xxxxxx`
+
+Este identificador constituye la identidad persistente de la entidad.
+
+#### Identificación funcional
+
+Cada Participación representa una utilización concreta de una Canción dentro de una Lista determinada.
+
+Una misma Canción podrá participar múltiples veces en diferentes Listas.
+
+Incluso podrá participar varias veces en una misma Lista siempre que las Reglas de Negocio lo permitan.
+
+Cada Participación constituye un hecho independiente.
+
+---
+
+### Relaciones
+
+La Participación mantiene relaciones con las siguientes entidades:
+
+- Canción.
+- Lista.
+
+Cada Participación estará asociada obligatoriamente a una única Canción y a una única Lista.
+
+Una Canción podrá tener múltiples Participaciones.
+
+Una Lista estará formada por una o varias Participaciones.
+
+La Participación constituye la única relación existente entre Canción y Lista.
+
+---
+
+### Atributos
+
+La Participación almacena exclusivamente información correspondiente a una utilización concreta de una Canción.
+
+Conceptualmente, sus atributos podrán clasificarse en:
+
+- Identificación.
+- Orden de reproducción.
+- Valoración.
+- Observaciones.
+- Resultados.
+- Metadatos.
+- Auditoría.
+
+La definición detallada de cada atributo se realizará en el Diccionario de Datos.
+
+---
+
+### Restricciones
+
+La Participación deberá cumplir las siguientes restricciones generales:
+
+- Toda Participación deberá disponer de un identificador técnico único.
+- Toda Participación deberá estar asociada exactamente a una Canción.
+- Toda Participación deberá estar asociada exactamente a una Lista.
+- El orden de reproducción deberá ser único dentro de cada Lista.
+- La eliminación de una Participación no podrá comprometer la coherencia histórica del sistema.
+
+---
+
+### Información derivada
+
+A partir de las Participaciones registradas, GeminiFy podrá calcular información derivada para Canciones, Listas y Artistas.
+
+La Participación constituye la principal fuente de información utilizada para generar conocimiento dentro del sistema.
+
+La información derivada no forma parte de la identidad de la Participación y podrá recalcularse en cualquier momento.
