@@ -478,3 +478,108 @@ A partir de la información registrada sobre un Artista, GeminiFy podrá calcula
 - Cualquier otro indicador definido por las Reglas de Negocio.
 
 La información derivada no forma parte de la identidad del Artista y podrá recalcularse en cualquier momento.
+
+## 2.3 Lista
+
+### Descripción
+
+La Lista representa una selección ordenada de Canciones creada para acompañar una sesión de entrenamiento con un objetivo determinado.
+
+Cada Lista constituye el registro histórico de una decisión de selección musical, donde las Canciones han sido elegidas y ordenadas conforme a criterios técnicos, musicales y subjetivos con el propósito de maximizar su utilidad como estímulo durante una sesión concreta de running.
+
+La Lista no constituye únicamente una colección de Canciones, sino el contexto en el que GeminiFy registra su utilización, evalúa su comportamiento y genera nuevo conocimiento sobre el Catálogo.
+
+Cada utilización de una Canción dentro de una Lista incrementa el conocimiento del sistema y contribuye al aprendizaje necesario para mejorar futuras propuestas de reproducción.
+
+La Lista constituye el principal mecanismo de generación de conocimiento de GeminiFy.
+
+---
+
+### Responsabilidad
+
+La responsabilidad de la Lista consiste en representar una propuesta musical diseñada para un objetivo concreto de entrenamiento y conservar el contexto completo en el que las Canciones han sido utilizadas.
+
+La Lista mantiene el orden de reproducción, registra las condiciones bajo las que fue creada y constituye el origen de la mayor parte de la información estadística y del aprendizaje generado por GeminiFy.
+
+La Lista no almacena conocimiento propio de las Canciones, sino el contexto de utilización que permitirá al sistema aprender de la experiencia acumulada.
+
+---
+
+### Identidad
+
+Cada Lista dispone de una identidad técnica única y permanente.
+
+#### Identidad técnica
+
+Cada Lista posee un identificador interno único, permanente e inmutable con el formato:
+
+`LST-xxxxxx`
+
+Este identificador constituye la identidad persistente de la entidad y será utilizado por todos los componentes internos del sistema.
+
+#### Identificación funcional
+
+Cada Lista representa una selección única de Canciones realizada para un propósito concreto.
+
+Su identidad funcional viene determinada por el conjunto de información que describe su creación y utilización, pudiendo coexistir distintas Listas aunque contengan total o parcialmente las mismas Canciones.
+
+---
+
+### Relaciones
+
+La Lista mantiene relaciones con las siguientes entidades del dominio:
+
+- Participación.
+
+Una Lista estará formada por una o varias Participaciones.
+
+Cada Participación asociará una Canción concreta con una posición determinada dentro de la Lista.
+
+La Lista no mantiene una relación directa con las Canciones, sino a través de las Participaciones, permitiendo conservar toda la información histórica asociada a cada utilización.
+
+---
+
+### Atributos
+
+La Lista almacena exclusivamente información relacionada con su creación, finalidad y utilización.
+
+Conceptualmente, sus atributos podrán clasificarse en las siguientes categorías:
+
+- Identificación.
+- Objetivo del entrenamiento.
+- Configuración de generación.
+- Información descriptiva.
+- Metadatos.
+- Auditoría.
+
+La definición detallada de cada atributo se realizará en el Diccionario de Datos.
+
+---
+
+### Restricciones
+
+La entidad Lista deberá cumplir las siguientes restricciones generales:
+
+- Toda Lista deberá disponer de un identificador técnico único.
+- Toda Lista deberá contener al menos una Participación.
+- El orden de las Participaciones deberá ser único dentro de una misma Lista.
+- Una misma Canción podrá aparecer en diferentes Listas.
+- La eliminación de una Lista no podrá comprometer la integridad histórica del Catálogo.
+
+---
+
+### Información derivada
+
+A partir de la información registrada sobre una Lista, GeminiFy podrá calcular información derivada, entre ella:
+
+- Duración total.
+- BPM medio.
+- Distribución por géneros.
+- Distribución por décadas.
+- Distribución por estados.
+- Número de Canciones.
+- Indicadores de reutilización.
+- Indicadores de diversidad.
+- Cualquier otro indicador definido por las Reglas de Negocio.
+
+La información derivada podrá recalcularse en cualquier momento y no forma parte de la identidad de la Lista.
