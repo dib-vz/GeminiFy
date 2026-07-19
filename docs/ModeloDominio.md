@@ -57,30 +57,37 @@ Cada Participación asocia una Canción con una puntuación concreta recibida en
 
 ### Diagrama de Relaciones del Dominio
 
-+-------------------+            1              0..* +-------------------+
- |     ARTISTA       |--------------------------------->|     CANCIÓN       |
- +-------------------+                                  +-------------------+
- | - Nombre          |                                  | - GEM_ID id       |
- +-------------------+                                  | - String Titulo   |
-                                                        | - SongStatus est. |
-                                                        +-------------------+
-                                                                  | 1
-                                                                  |
-                                                                  | (Historial)
-                                                                  |
-                                                                  v 0..*
- +-------------------+            1              1..* +-------------------+
- |      LISTA        |--------------------------------->|   PARTICIPACIÓN   |
- +-------------------+                                  +-------------------+
- | - GEM_ID id       |                                  | - id_lista        |
- | - String Tipo     |                                  | - Orden           |
- | - FechaConsolid.  |                                  | - Puntuación      |
- +-------------------+                                  | - Fecha           |
-                                                        +-------------------+
-                                                                  ^
-                                                                  |
-           [ Canción.ÚltimaParticipación ] -----------------------+
-           (Relación derivada / Ventana de acceso rápido)
+```mermaid
+classDiagram
+    direction LR
+    class Artista {
+        +String Nombre
+    }
+    class Canción {
+        +GEM_ID id
+        +String Titulo
+        +SongStatus Estado
+        +List~Tag~ Tags
+        +List~Flag~ Flags
+        +recalcularIndicadores()
+        +obtenerUltimaParticipación() Participación
+    }
+    class Participación {
+        +GEM_ID id_lista
+        +Integer Orden
+        +Decimal Puntuacion
+        +DateTime Fecha
+    }
+    class Lista {
+        +GEM_ID id
+        +String Tipo
+        +DateTime FechaConsolidacion
+    }
+
+    Artista "1" --> "0..*" Canción : Interpreta
+    Canción "1" *-- "0..*" Participación : Posee en su Historial
+    Lista "1" *-- "1..*" Participación : Contiene
+    Canción ..> Participación : Consulta Última Participación
 
 ---
 
