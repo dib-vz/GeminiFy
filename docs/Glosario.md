@@ -2,9 +2,9 @@
 
 # Glosario
 
-**Versión:** 1.0  
+**Versión:** 1.1  
 **Estado:** Activo  
-**Última actualización:** 15/07/2026
+**Última actualización:** 19/07/2026
 
 ---
 
@@ -59,15 +59,10 @@ Las definiciones incluidas en este documento constituyen la referencia oficial d
 - Flag
 - Tag
 
-#
-## Canonización
+## 3. Procesos
 
-Proceso mediante el cual GeminiFy determina la representación definitiva de una Canción dentro del Catálogo cuando existen varias interpretaciones o versiones candidatas.
-
-La Canonización garantiza que cada identidad musical esté representada por una única Canción conforme a las Reglas de Negocio.
-
-# 3. Procesos
-
+- Canonización
+- Propuesta de lista
 - Consolidación
 - Importación
 - Exportación
@@ -192,18 +187,19 @@ Una Canción puede estar asociada a ninguno, uno o varios Tags de forma simultá
 
 Los Tags son independientes del Estado y de las Flags.
 
+# 3. Procesos
+
+Los procesos representan el conjunto de operaciones mediante las cuales GeminiFy incorpora, transforma, actualiza o utiliza el conocimiento almacenado en el Catálogo.
+
+Cada proceso persigue un objetivo específico y puede implicar la creación, modificación, análisis o explotación de la información gestionada por el sistema.
+
+---
 
 ## Canonización
 
 Proceso mediante el cual GeminiFy determina la representación definitiva de una Canción dentro del Catálogo cuando existen varias interpretaciones o versiones candidatas.
 
 La Canonización garantiza que cada identidad musical esté representada por una única Canción conforme a las Reglas de Negocio.
-
-# 3. Procesos
-
-Los procesos representan el conjunto de operaciones mediante las cuales GeminiFy incorpora, transforma, actualiza o utiliza el conocimiento almacenado en el Catálogo.
-
-Cada proceso persigue un objetivo específico y puede implicar la creación, modificación, análisis o explotación de la información gestionada por el sistema.
 
 ---
 
