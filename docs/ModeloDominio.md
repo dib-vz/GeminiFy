@@ -2,9 +2,9 @@
 
 # Modelo de Dominio
 
-**Versión:** 1.0  
+**Versión:** 1.1  
 **Estado:** Activo  
-**Última actualización:** 16/07/2026
+**Última actualización:** 19/07/2026
 
 ---
 
@@ -85,19 +85,13 @@ Para la elaboración de este documento se aplican los siguientes principios:
 
 ### 1.3 Organización del modelo (ADR-015)
 
+## 1.4 Responsabilidad única
+
 ---
 
 ## 2. Entidad Central
 
 ### 2.1 Canción
-
-- Descripción
-- Responsabilidad
-- Identidad
-- Relaciones
-- Atributos
-- Restricciones
-- Información derivada
 
 ---
 
