@@ -77,6 +77,8 @@ Para la elaboración de este documento se aplican los siguientes principios:
 
 # Índice
 
+---
+
 ## 1. Principios del Modelo
 
 ### 1.1 Principios generales
@@ -85,7 +87,17 @@ Para la elaboración de este documento se aplican los siguientes principios:
 
 ### 1.3 Organización del modelo (ADR-015)
 
-## 1.4 Responsabilidad única
+### 1.4 Responsabilidad única
+
+### 1.5 Identidad
+
+### 1.6 Integridad
+
+### 1.7 Evolución
+
+### 1.8 Criterio de entidad
+
+### 1.9 Resolución de ambigüedades
 
 ---
 
@@ -93,68 +105,43 @@ Para la elaboración de este documento se aplican los siguientes principios:
 
 ### 2.1 Canción
 
----
+### 2.2 Artista
 
-## 3. Información Asociada
+### 2.3 Lista
 
-### 3.1 Artista
-
-- Descripción
-- Responsabilidad
-- Identidad
-- Relaciones
-- Atributos
-- Restricciones
-
-### 3.2 Lista
-
-- Descripción
-- Responsabilidad
-- Identidad
-- Relaciones
-- Atributos
-- Restricciones
-
-### 3.3 Participación
-
-- Descripción
-- Responsabilidad
-- Identidad
-- Relaciones
-- Atributos
-- Restricciones
+### 2.4 Participación
 
 ---
 
-## 4. Clasificación
+## 3. Clasificación
 
-### 4.1 Estado
+### 3.1 Estado
 
-### 4.2 Flag
+### 3.2 Flag
 
-### 4.3 Tag
-
----
-
-## 5. Información Estadística
-
-### 5.1 Puntuación
-
-### 5.2 Nota Media
-
-### 5.3 Indicadores
+### 3.3 Tag
 
 ---
 
-## 6. Relaciones del Modelo
+## 4. Información Estadística
+
+### 4.1 Puntuación
+
+### 4.2 Nota Media
+
+### 4.3 Indicadores
 
 ---
 
-## 7. Restricciones del Modelo
+## 5. Relaciones del Modelo
 
 ---
 
-## 8. Información Derivada
+## 6. Restricciones del Modelo
+
+---
+
+## 7. Información Derivada
 
 ---
 
@@ -685,3 +672,153 @@ A partir de las Participaciones registradas, GeminiFy podrá calcular informaci�
 La Participación constituye la principal fuente de información utilizada para generar conocimiento dentro del sistema.
 
 La información derivada no forma parte de la identidad de la Participación y podrá recalcularse en cualquier momento.
+
+---
+
+# 3. Clasificación
+
+La Clasificación agrupa los conceptos utilizados para organizar, categorizar y gobernar el ciclo de vida de las Canciones dentro del Catálogo. Ninguno de estos elementos posee identidad propia independiente de la Canción a la que califican.
+
+---
+
+## 3.1 Estado
+
+### Descripción
+
+El Estado define la situación actual de una Canción dentro de su ciclo de vida en GeminiFy.
+
+Representa una condición mutuamente excluyente que determina cómo el sistema interactúa con la Canción y si esta es elegible para futuras Listas. Los Estados sustituyen conceptualmente a las antiguas pestañas de gestión operativa.
+
+---
+
+### Restricciones
+
+- Toda Canción deberá tener un único Estado asignado en cualquier momento.
+- Los Estados principales definidos por el dominio son: Activa (antiguas Legiones), Inactiva (antiguo Cementerio) y Observación (antiguo Cuartel).
+- Las transiciones de Estado estarán gobernadas estrictamente por el Motor de Reglas de Negocio.
+- El Estado Activa indica que la Canción es elegible para la generación de Listas.
+- El Estado Inactiva indica que la Canción ha sido retirada del ciclo de selección, conservando su historial intacto.
+
+---
+
+## 3.2 Flag
+
+### Descripción
+
+Las Flags son marcadores binarios o etiquetas de control operativo asignadas a una Canción para forzar o alterar su comportamiento estándar dentro del sistema.
+
+---
+
+### Restricciones
+
+- Una Canción podrá tener cero, una o múltiples Flags simultáneamente.
+- Las Flags son independientes del Estado de la Canción.
+- Actúan como modificadores de máxima prioridad sobre las reglas estadísticas (por ejemplo, una Flag de VETO impide que una Canción entre en una Lista, independientemente de su Nota Media).
+
+---
+
+## 3.3 Tag
+
+### Descripción
+
+Los Tags son metadatos descriptivos que permiten agrupar y filtrar Canciones basándose en características musicales o contextuales (por ejemplo: Género, Década, Ritmo).
+
+---
+
+### Restricciones
+
+- Los Tags no definen el ciclo de vida de la Canción, sino su taxonomía musical.
+- Son acumulables (una Canción puede pertenecer a varios Tags simultáneamente).
+- Constituyen variables fundamentales en la configuración y generación de las Listas.
+
+---
+
+# 4. Información Estadística
+
+La información estadística representa el rendimiento empírico de las Canciones y el conocimiento acumulado por el sistema. Constituye siempre el resultado matemático del historial de Participaciones.
+
+---
+
+## 4.1 Puntuación
+
+### Descripción
+
+La Puntuación es la evaluación numérica otorgada a una Canción durante una Participación específica en una Lista.
+
+---
+
+### Restricciones
+
+- Es un atributo exclusivo de la entidad Participación, no de la Canción.
+- Una vez consolidada, la Puntuación es inmutable y representa el rendimiento exacto de la Canción en ese contexto espacio-temporal.
+- Su formato es numérico decimal con precisión de dos decimales.
+
+---
+
+## 4.2 Nota Media
+
+### Descripción
+
+La Nota Media es el indicador principal de rendimiento histórico de una Canción dentro del Catálogo.
+
+---
+
+### Restricciones
+
+- Es un valor estrictamente derivado.
+- No se almacena como un atributo fijo editable, sino que se calcula dinámicamente promediando todas las Puntuaciones históricas vinculadas a la identidad de la Canción.
+- Constituye el factor clave para las transiciones automáticas de Estado.
+
+---
+
+## 4.3 Indicadores
+
+### Descripción
+
+Los Indicadores son el conjunto de métricas secundarias derivadas de las interacciones históricas de la Canción con el sistema a lo largo del tiempo.
+
+---
+
+### Restricciones
+
+- Incluyen el Contador de Participaciones (número total de Listas en las que ha aparecido).
+- Incluyen la Última Reproducción (fecha de la Participación más reciente, crucial para evitar la fatiga y sobreexposición).
+- Se recalculan tras cada proceso de consolidación de Listas.
+
+---
+
+# 5. Relaciones del Modelo
+
+La red conceptual de GeminiFy se vertebra a través de las siguientes relaciones fundamentales:
+
+- **Canción - Artista (N:M):** Una Canción deberá estar interpretada por al menos un Artista. Un Artista podrá estar vinculado a múltiples Canciones.
+- **Canción - Estado (1:1):** Una Canción se encontrará exactamente en un único Estado en un momento dado.
+- **Lista - Participación (1:N):** Una Lista estará compuesta por una o más Participaciones ordenadas de forma secuencial.
+- **Canción - Participación (1:N):** Una Canción podrá registrar múltiples Participaciones a lo largo de su historia.
+- **Participación como Nexo:** La Participación actúa como la entidad intermedia inmutable que asocia una Lista (el contexto) con una Canción (el elemento) en una posición (orden numérico) y con un resultado (puntuación) específicos.
+
+---
+
+# 6. Restricciones del Modelo
+
+Para garantizar la integridad y coherencia del sistema, el dominio obedece a las siguientes reglas invariables:
+
+- **Inmutabilidad del Histórico:** Una vez consolidada, una Participación (y su Puntuación) no podrá ser alterada ni eliminada. Constituye un hecho histórico.
+- **Supremacía del Cálculo (Single Source of Truth):** Ningún atributo estadístico (Nota Media, Contador) podrá existir desacoplado de sus eventos de origen. Todo cálculo matemático provendrá directamente del sumatorio de las Participaciones.
+- **Estabilidad de la Identidad:** La evolución musical, los cambios de nombre artístico o las recategorizaciones de género jamás alterarán la identidad técnica interna (`GEM-xxxxxx`, `ART-xxxxxx`).
+- **Precedencia de Retiro:** Las Canciones en Estado Inactiva gozarán de protección. Sus indicadores estadísticos no forzarán promociones automáticas a Estado Activa si fueron retiradas previamente.
+- **Aislamiento de la Lista:** La eliminación de una Lista no borrará el conocimiento (las Participaciones) generado por la misma, garantizando que la experiencia de la IA persista aunque se depuren registros organizativos.
+
+---
+
+# 7. Información Derivada
+
+La Información Derivada conforma el conocimiento avanzado e inteligencia de GeminiFy. Son proyecciones abstractas que el sistema construye sumando metadatos (Tags, Flags), eventos empíricos (Participaciones, Listas) e Indicadores.
+
+Incluye, entre otros:
+
+- **Tendencia Musical:** Análisis de la evolución de la Nota Media en las últimas participaciones de una Canción para evaluar su rendimiento al alza o a la baja.
+- **Afinidad de Listas:** Identificación de patrones empíricos sobre qué Tags (Géneros, BPMs) funcionan mejor bajo qué objetivos de entrenamiento.
+- **Fatiga del Catálogo:** Detección automática de la sobreutilización de determinadas Canciones o Artistas basándose en la concentración temporal de sus últimas reproducciones.
+
+La Información Derivada no se almacena permanentemente como entidad; se consulta, se computa a través del Motor de Estadísticas y se actualiza constantemente para asegurar que las decisiones del sistema utilicen siempre los datos más recientes y consolidados.
