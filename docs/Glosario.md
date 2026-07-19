@@ -59,7 +59,14 @@ Las definiciones incluidas en este documento constituyen la referencia oficial d
 - Flag
 - Tag
 
-## 3. Procesos
+#
+## Canonización
+
+Proceso mediante el cual GeminiFy determina la representación definitiva de una Canción dentro del Catálogo cuando existen varias interpretaciones o versiones candidatas.
+
+La Canonización garantiza que cada identidad musical esté representada por una única Canción conforme a las Reglas de Negocio.
+
+# 3. Procesos
 
 - Consolidación
 - Importación
@@ -117,9 +124,11 @@ El Catálogo constituye el universo musical del sistema y representa la colecci�
 
 ## Canción
 
-Obra musical única registrada en el Catálogo.
+Interpretación musical única registrada en el Catálogo.
 
-La Canción constituye la entidad principal del modelo de negocio y mantiene su identidad durante todo su ciclo de vida, independientemente de sus Participaciones, Estado, Flags o Tags.
+La identidad funcional de una Canción viene determinada por la combinación del Tema y el Artista o conjunto de Artistas que realizan la interpretación original seleccionada por GeminiFy.
+
+La Canción constituye la entidad central del modelo de dominio y mantiene su identidad durante todo su ciclo de vida, independientemente de sus Participaciones, Estado, Flags o Tags.
 
 ---
 
@@ -133,9 +142,9 @@ Un Artista puede estar asociado a una o varias Canciones del Catálogo.
 
 ## Lista
 
-Colección ordenada de Canciones utilizada como entrada para un proceso de Consolidación.
+Selección ordenada de Canciones creada para un objetivo concreto de entrenamiento.
 
-Una Lista representa una selección musical correspondiente a un momento determinado y constituye el origen de las futuras Participaciones.
+La Lista constituye el contexto en el que las Canciones son utilizadas por GeminiFy y representa el principal mecanismo de generación de conocimiento del sistema mediante la creación de Participaciones.
 
 ---
 
@@ -175,11 +184,20 @@ Las Flags son independientes del Estado y pueden asignarse o retirarse sin modif
 
 ## Tag
 
-Etiqueta utilizada para clasificar y agrupar Canciones según criterios definidos por el usuario o por el sistema.
+Etiqueta descriptiva utilizada para clasificar una Canción según cualquier característica relevante para GeminiFy.
+
+Los Tags constituyen el mecanismo abierto de clasificación del Catálogo y pueden representar aspectos musicales, funcionales, emocionales o de cualquier otra naturaleza.
 
 Una Canción puede estar asociada a ninguno, uno o varios Tags de forma simultánea.
 
-Los Tags tienen una finalidad organizativa y no afectan al comportamiento funcional de la Canción.
+Los Tags son independientes del Estado y de las Flags.
+
+
+## Canonización
+
+Proceso mediante el cual GeminiFy determina la representación definitiva de una Canción dentro del Catálogo cuando existen varias interpretaciones o versiones candidatas.
+
+La Canonización garantiza que cada identidad musical esté representada por una única Canción conforme a las Reglas de Negocio.
 
 # 3. Procesos
 
@@ -202,6 +220,8 @@ La propuesta se construye aplicando el conocimiento acumulado del sistema, las R
 Proceso mediante el cual GeminiFy incorpora al Catálogo la información procedente de una Lista.
 
 Como resultado de una Consolidación, el sistema genera las Participaciones correspondientes, actualiza el conocimiento asociado a las Canciones y ejecuta las Reglas de Negocio que sean aplicables.
+
+La Consolidación constituye el principal mecanismo mediante el cual GeminiFy incrementa el conocimiento almacenado en el Catálogo.
 
 ---
 
