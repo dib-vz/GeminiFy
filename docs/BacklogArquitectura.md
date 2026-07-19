@@ -52,7 +52,7 @@ Durante el diseño de ModeloDominio.md.
 
 ## Estado
 
-Pendiente de evaluación.
+Resuelto y Aplicado (19/07/2026).
 
 ## Origen
 
@@ -89,7 +89,7 @@ La modificación afectará a:
 
 ## Próxima revisión
 
-Durante la elaboración de `ModeloDominio.md`.
+* **Resolución:** Término "Último Combate" extinguido. Se adopta "Última Participación", modelado no como un atributo estático, sino como una relación derivada del agregado `Canción` que apunta a su `Participación` más reciente en el tiempo..
 
 # BA-003 — Definición del flujo del proceso de Consolidación
 
@@ -191,7 +191,7 @@ Durante la elaboración de `Arquitectura.md`.
 
 ## Estado
 
-Pendiente de evaluación.
+Resuelto y Aplicado (19/07/2026).
 
 ## Origen
 
@@ -227,7 +227,7 @@ La incorporación de este concepto podría requerir una reorganización de la se
 
 ## Próxima revisión
 
-Durante la elaboración de `ModeloDominio.md`.
+* **Resolución:** Definida la transversalidad del Historial y establecida la separación matemática entre Datos (Puntuación) e Indicadores (Nota Media, Tendencia, Ranking).
 
 # BA-006 — Separación entre Componentes del Dominio y Componentes Técnicos
 
@@ -285,7 +285,7 @@ Durante la elaboración de `Arquitectura.md`.
 
 ## Estado
 
-Pendiente de evaluación.
+Resuelto y Aplicado (19/07/2026).
 
 ## Origen
 
@@ -313,7 +313,7 @@ La reclasificación podría requerir reorganizar la estructura del Glosario.
 
 ## Próxima revisión
 
-Durante la elaboración de `ModeloDominio.md`.
+* **Resolución:** Definida la transversalidad del Historial y establecida la separación matemática entre Datos (Puntuación) e Indicadores (Nota Media, Tendencia, Ranking).
 
 # BA-008 — Revisión del documento Visión
 
@@ -544,8 +544,8 @@ Tras finalizar el Modelo de Dominio.
 
 ## Estado
 
-Pendiente.
-
+Resuelto y Aplicado (19/07/2026).
+  
 ## Origen
 
 Finalización del modelado de las entidades principales del Modelo de Dominio.
@@ -576,8 +576,7 @@ Mejorar la legibilidad y comprensión del Modelo de Dominio, separando la visió
 
 ## Próxima revisión
 
-Durante el cierre del Modelo de Dominio v1.0.
-
+* **Resolución:**Integrada la sección de Visión Conceptual y el diagrama de clases Mermaid al inicio de modeloDominio.md.
 
 # BA-016 — Modelo de gestión de Tags
 
