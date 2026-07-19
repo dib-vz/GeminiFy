@@ -2,7 +2,7 @@
 
 # Modelo de Dominio
 
-**Versión:** 1.1  
+**Versión:** 1.0
 **Estado:** Activo  
 **Última actualización:** 19/07/2026
 
@@ -44,6 +44,49 @@ Quedan fuera del alcance de este documento:
 - La definición de las reglas de negocio.
 - La arquitectura software.
 - Los detalles de la interfaz de usuario.
+
+---
+
+# Visión Conceptual del Dominio (BA-015)
+
+Antes de profundizar en la definición técnica y detallada de cada componente, es imprescindible comprender la topología del dominio de GeminiFy. La plataforma no está diseñada como un reproductor, sino como un **Motor de Aprendizaje Musical**.
+
+El núcleo absoluto de nuestro ecosistema es la **Canción**. Una canción no vive aislada; está ligada intrínsecamente a un **Artista**. El sistema adquiere conocimiento mediante el procesamiento de **Listas** de entrenamiento. Cuando una Lista es consolidada, el sistema no guarda la lista como un bloque rígido, sino que la descompone en **Participaciones** atómicas e inmutables. 
+
+Cada Participación asocia una Canción con una puntuación concreta recibida en ese evento. El conjunto acumulado de estas participaciones da forma al **Historial (o ciclo de vida)** de la canción, provocando que el **Catálogo** recalcule sus indicadores y actualice de forma dinámica el **Estado** de la canción (Activa en Legiones, en Observación en Cuartel, o Protegida/Retirada en Cementerio).
+
+### Diagrama de Relaciones del Dominio
+
+```mermaid
+classDiagram
+    direction LR
+    class Artista {
+        +String Nombre
+    }
+    class Canción {
+        +GEM_ID id
+        +String Titulo
+        +SongStatus Estado
+        +List~Tag~ Tags
+        +List~Flag~ Flags
+        +recalcularIndicadores()
+    }
+    class Participación {
+        +GEM_ID id_lista
+        +Integer Orden
+        +Decimal Puntuacion
+        +DateTime Fecha
+    }
+    class Lista {
+        +GEM_ID id
+        +String Tipo
+        +DateTime FechaConsolidacion
+    }
+
+    Artista "1" --> "0..*" Canción : Interpreta
+    Canción "1" *-- "0..*" Participación : Posee en su Historial
+    Lista "1" *-- "1..*" Participación : Contiene
+    Canción --> SongStatus : Atraviesa
 
 ---
 
@@ -356,6 +399,15 @@ A partir de la información registrada sobre una Canción, GeminiFy podrá calcu
 - Cualquier otro indicador definido por las Reglas de Negocio.
 
 La información derivada no forma parte de la identidad de la Canción y podrá recalcularse en cualquier momento.
+
+---
+
+### Nota de Evolución Conceptual — Relación con el Historial (BA-002)
+- Se extingue definitivamente el término heredado del Excel "Último Combate".
+- Se introduce el concepto de **Última Participación** como una relación dinámica y derivada de la entidad `Canción`. 
+- **Definición funcional:** Representa la referencia directa a la instancia de `Participación` más reciente en la línea temporal del `Historial` de dicha canción. A nivel de lectura, permite a la canción conocer instantáneamente la fecha (`FechaConsolidacion`) y el identificador de la lista (`id_lista`) de su última aparición sin necesidad de recalcular todo el histórico en operaciones de consulta rápidas.
+
+---
 
 ## 2.2 Artista
 
@@ -822,3 +874,18 @@ Incluye, entre otros:
 - **Fatiga del Catálogo:** Detección automática de la sobreutilización de determinadas Canciones o Artistas basándose en la concentración temporal de sus últimas reproducciones.
 
 La Información Derivada no se almacena permanentemente como entidad; se consulta, se computa a través del Motor de Estadísticas y se actualiza constantemente para asegurar que las decisiones del sistema utilicen siempre los datos más recientes y consolidados.
+
+---
+
+## Estructura Avanzada de Información (BA-005 y BA-007)
+
+### El Historial como Concepto Transversal (BA-007)
+El **Historial** deja de ser considerado un mero reporte estadístico secundario. Se define formalmente como un concepto transversal y estructural del Dominio de GeminiFy. Representa la traza cronológica completa e inmutable de la evolución de una `Canción` a lo largo de su ciclo de vida dentro del sistema. Se compone del conjunto indexado de todas sus `Participaciones`. Cualquier cálculo posterior del sistema (cambios de estado, notas o clasificaciones) se deriva obligatoriamente de la lectura de este historial.
+
+### Separación entre Datos e Indicadores Calculados (BA-005)
+Para garantizar la escalabilidad del sistema, se establece una distinción taxonómica estricta:
+1. **Dato de Negocio (Puntuación):** Es la nota individual e inmutable registrada en una `Participación` específica dentro de una lista de entrada. No es un indicador, sino una muestra atómica de información.
+2. **Indicadores (Información Calculada):** Son métricas complejas generadas mediante funciones puras a partir del procesamiento del `Historial`. Tienen como objetivo la toma de decisiones y la explotación del conocimiento. Los indicadores oficiales de la v1.0 son:
+   - **Nota Media (AverageScore):** Media aritmética de las puntuaciones del historial.
+   - **Ranking:** Posición relativa de la canción en el catálogo basada en su rendimiento.
+   - **Tendencia:** Vector de evolución del rendimiento en las últimas participaciones.
